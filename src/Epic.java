@@ -2,10 +2,10 @@ import java.util.ArrayList;
 
 public class Epic extends Task{
 
-    private ArrayList<Subtask> subtasks;
+    private final ArrayList<Subtask> subtasks;
 
     public Epic(String name, String description) {
-        super(name, description);
+        super(name, description, TaskStatus.NEW);
         this.subtasks = new ArrayList<>();
     }
 
@@ -28,23 +28,24 @@ public class Epic extends Task{
     }
 
     public ArrayList<Subtask> getSubtasks() {
-        return subtasks;
+        return new ArrayList<>(subtasks);
     }
 
     public void deleteAllSubtasks() {
         subtasks.clear();
     }
 
-    public void replaceSubtask(Subtask subtask) {
-        if (!subtasks.contains(subtask)) {
-            System.out.println("There is no subtask with id = " + subtask.getId() + " in subtasks");
+    public void replaceSubtask (Subtask subtaskBefore, Subtask subtaskAfter) {
+        if (!subtasks.contains(subtaskBefore)) {
+            System.out.println("There is no subtask with id = " + subtaskBefore.getId() + " in subtasks");
             System.out.println("method replaceSubtask in Epic");
             return;
         }
-        subtasks.set(subtasks.indexOf(subtask), subtask);
-    }
 
-    public void setSubtasks(ArrayList<Subtask> subtasks) {
-        this.subtasks = subtasks;
+        if (!subtaskBefore.getId().equals(subtaskAfter.getId())) {
+            System.out.println("Please make sure both subtasks have the same id");
+            System.out.println("method replaceSubtask in Epic");
+        }
+        subtasks.set(subtasks.indexOf(subtaskBefore), subtaskAfter);
     }
 }

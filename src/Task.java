@@ -10,10 +10,10 @@ public class Task {
     //конструктор
     //---------------------------------------------------
 
-    public Task(String name, String description) {
+    public Task(String name, String description, TaskStatus status) {
         this.description = description;
         this.name = name;
-        this.status = TaskStatus.NEW;
+        this.status = status;
     }
 
     //---------------------------------------------------
