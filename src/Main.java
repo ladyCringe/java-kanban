@@ -6,7 +6,7 @@ public class Main {
         //---------------------------------------------------
         //шаги 1 и 2: тестирование создания задач и их вывода
         //---------------------------------------------------
-        TaskManager manager = new TaskManager();
+        TaskManager manager = Managers.getDefault();
 
         Task task1 = new Task("task 1", "task description 1", TaskStatus.NEW);
         Task task2 = new Task("task 2", "task description 2", TaskStatus.NEW);
@@ -39,6 +39,23 @@ public class Main {
         System.out.println(manager.getTasks());
         System.out.println(manager.getEpics());
         System.out.println(manager.getSubtasks());
+
+        System.out.println("-".repeat(10));
+
+        printAllTasks(manager);
+
+        System.out.println("-".repeat(10));
+
+        System.out.println(manager.getTaskById(task1.getId()));
+        System.out.println(manager.getTaskById(task2.getId()));
+        System.out.println(manager.getTaskById(task1.getId()));
+        System.out.println(manager.getEpicById(epic2.getId()));
+        System.out.println(manager.getSubtaskById(subtask2_1.getId()));
+        System.out.println(manager.getEpicById(epic1.getId()));
+
+        System.out.println("-".repeat(10));
+
+        printAllTasks(manager);
 
         System.out.println("-".repeat(20));
         //---------------------------------------------------
@@ -99,6 +116,16 @@ public class Main {
 
         System.out.println("-".repeat(10));
 
+        System.out.println(manager.getEpicById(epic2.getId()));
+        System.out.println(manager.getSubtaskById(subtask2_1.getId()));
+        System.out.println(manager.getEpicById(epic1.getId()));
+
+        System.out.println("-".repeat(10));
+
+        printAllTasks(manager);
+
+        System.out.println("-".repeat(10));
+
         Subtask subtask2_1upd3 = new Subtask("subtask2_1upd3", "of epic 2",
                 TaskStatus.NEW, epic2.getId());
         subtask2_1upd3.setId(subtask2_1.getId());
@@ -114,6 +141,10 @@ public class Main {
 
         System.out.println(manager.getEpics());
         System.out.println(manager.getSubtasks());
+
+        System.out.println("-".repeat(10));
+
+        printAllTasks(manager);
 
         System.out.println("-".repeat(20));
         //---------------------------------------------------
@@ -150,8 +181,36 @@ public class Main {
         manager.deleteAllEpics();
 
         System.out.println(manager);
+
+        System.out.println("-".repeat(10));
+
+        printAllTasks(manager);
         //---------------------------------------------------
         //шаг 4 тестов работает
         //---------------------------------------------------
+    }
+
+    private static void printAllTasks(TaskManager manager) {
+        System.out.println("Задачи:");
+        for (Task task : manager.getTasks()) {
+            System.out.println(task);
+        }
+        System.out.println("Эпики:");
+        for (Task epic : manager.getEpics()) {
+            System.out.println(epic);
+
+            for (Task task : manager.getEpicsSubtasksById(epic.getId())) {
+                System.out.println("--> " + task);
+            }
+        }
+        System.out.println("Подзадачи:");
+        for (Task subtask : manager.getSubtasks()) {
+            System.out.println(subtask);
+        }
+
+        System.out.println("История:");
+        for (Task task : manager.getHistory()) {
+            System.out.println(task);
+        }
     }
 }

@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class Epic extends Task{
+public class Epic extends Task {
 
     private final ArrayList<Subtask> subtasks;
 
@@ -12,6 +12,12 @@ public class Epic extends Task{
     public void addSubtask(Subtask subtask) {
         if (subtasks.contains(subtask)) {
             System.out.println("Subtask already exists here");
+            System.out.println("method addSubtask in Epic");
+            return;
+        }
+
+        if (this.getId().equals(subtask.getId())) {
+            System.out.println("epic has the same id");
             System.out.println("method addSubtask in Epic");
             return;
         }
@@ -35,7 +41,7 @@ public class Epic extends Task{
         subtasks.clear();
     }
 
-    public void replaceSubtask (Subtask subtaskBefore, Subtask subtaskAfter) {
+    public void replaceSubtask(Subtask subtaskBefore, Subtask subtaskAfter) {
         if (!subtasks.contains(subtaskBefore)) {
             System.out.println("There is no subtask with id = " + subtaskBefore.getId() + " in subtasks");
             System.out.println("method replaceSubtask in Epic");
@@ -45,7 +51,17 @@ public class Epic extends Task{
         if (!subtaskBefore.getId().equals(subtaskAfter.getId())) {
             System.out.println("Please make sure both subtasks have the same id");
             System.out.println("method replaceSubtask in Epic");
+            return;
         }
         subtasks.set(subtasks.indexOf(subtaskBefore), subtaskAfter);
+    }
+
+    @Override
+    public Task cloneTask(){
+        Epic newTask =  new Epic(getName(), getDescription());
+        newTask.setId(getId());
+        newTask.setStatus(getStatus());
+        newTask.getSubtasks().addAll(subtasks);
+        return newTask;
     }
 }

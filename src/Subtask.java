@@ -10,4 +10,11 @@ public class Subtask extends Task {
     public Integer getEpicId() {
         return epicId;
     }
+
+    @Override
+    public Task cloneTask() {
+        Subtask newTask =  new Subtask(getName(), getDescription(), getStatus(), epicId);
+        newTask.setId(getId());
+        return newTask;
+    }
 }

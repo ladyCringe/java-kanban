@@ -53,6 +53,15 @@ public class Task {
     }
 
     //---------------------------------------------------
+    //создание копии
+    //---------------------------------------------------
+    public Task cloneTask() {
+        Task newTask =  new Task(name, description, status);
+        newTask.setId(id);
+        return newTask;
+    }
+
+    //---------------------------------------------------
     //переопределение hashCode(), equals() и toString()
     //---------------------------------------------------
     @Override
