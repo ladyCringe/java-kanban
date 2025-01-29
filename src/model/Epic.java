@@ -1,3 +1,5 @@
+package model;
+
 import java.util.ArrayList;
 
 public class Epic extends Task {
@@ -11,14 +13,14 @@ public class Epic extends Task {
 
     public void addSubtask(Subtask subtask) {
         if (subtasks.contains(subtask)) {
-            System.out.println("Subtask already exists here");
-            System.out.println("method addSubtask in Epic");
+            System.out.println("model.Subtask already exists here");
+            System.out.println("method addSubtask in model.Epic");
             return;
         }
 
         if (this.getId().equals(subtask.getId())) {
             System.out.println("epic has the same id");
-            System.out.println("method addSubtask in Epic");
+            System.out.println("method addSubtask in model.Epic");
             return;
         }
         subtasks.add(subtask);
@@ -26,8 +28,8 @@ public class Epic extends Task {
 
     public void removeSubtask(Subtask subtask) {
         if (!subtasks.contains(subtask)) {
-            System.out.println("Subtask doesn't exists here");
-            System.out.println("method removeSubtask in Epic");
+            System.out.println("model.Subtask doesn't exists here");
+            System.out.println("method removeSubtask in model.Epic");
             return;
         }
         subtasks.remove(subtask);
@@ -44,13 +46,13 @@ public class Epic extends Task {
     public void replaceSubtask(Subtask subtaskBefore, Subtask subtaskAfter) {
         if (!subtasks.contains(subtaskBefore)) {
             System.out.println("There is no subtask with id = " + subtaskBefore.getId() + " in subtasks");
-            System.out.println("method replaceSubtask in Epic");
+            System.out.println("method replaceSubtask in model.Epic");
             return;
         }
 
         if (!subtaskBefore.getId().equals(subtaskAfter.getId())) {
             System.out.println("Please make sure both subtasks have the same id");
-            System.out.println("method replaceSubtask in Epic");
+            System.out.println("method replaceSubtask in model.Epic");
             return;
         }
         subtasks.set(subtasks.indexOf(subtaskBefore), subtaskAfter);

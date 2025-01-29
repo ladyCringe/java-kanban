@@ -1,13 +1,18 @@
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Objects;
+package service;
+
+import model.Epic;
+import model.Subtask;
+import model.Task;
+import model.TaskStatus;
+
+import java.util.*;
 
 public class InMemoryTaskManager implements TaskManager {
 
     private Integer id = 0;
-    private final HashMap<Integer,Task> tasks;
-    private final HashMap<Integer,Subtask> subtasks;
-    private final HashMap<Integer,Epic> epics;
+    private final Map<Integer,Task> tasks;
+    private final Map<Integer,Subtask> subtasks;
+    private final Map<Integer,Epic> epics;
     private final HistoryManager historyManager;
 
     public InMemoryTaskManager() {
@@ -25,7 +30,7 @@ public class InMemoryTaskManager implements TaskManager {
     //блок методов для tasks
     //---------------------------------------------------
     @Override
-    public ArrayList<Task> getTasks() {
+    public List<Task> getTasks() {
         return new ArrayList<>(tasks.values());
     }
 
@@ -38,7 +43,7 @@ public class InMemoryTaskManager implements TaskManager {
     public Task getTaskById(Integer id) {
         if (!tasks.containsKey(id)) {
             System.out.println("There's no task with id " + id);
-            System.out.println("method getTaskById in InMemoryTaskManager");
+            System.out.println("method getTaskById in service.InMemoryTaskManager");
             return null;
         }
 
@@ -51,7 +56,7 @@ public class InMemoryTaskManager implements TaskManager {
     public void createTask(Task task) {
         if (tasks.containsKey(task.getId())) {
             System.out.println("task already exists with id = " + task.getId());
-            System.out.println("method createTask in InMemoryTaskManager");
+            System.out.println("method createTask in service.InMemoryTaskManager");
             return;
         }
 
@@ -64,7 +69,7 @@ public class InMemoryTaskManager implements TaskManager {
     public void updateTask(Task task) {
         if (Objects.isNull(task.getId()) || !tasks.containsKey(task.getId())) {
             System.out.println("task does not exist with id = " + task.getId() + ". Please, check if id is correct.");
-            System.out.println("method updateTask in InMemoryTaskManager");
+            System.out.println("method updateTask in service.InMemoryTaskManager");
             return;
         }
 
@@ -75,7 +80,7 @@ public class InMemoryTaskManager implements TaskManager {
     public void deleteTaskById(Integer id) {
         if (!tasks.containsKey(id)) {
             System.out.println("There is no task with id = " + id + " in tasks");
-            System.out.println("method deleteTaskById in InMemoryTaskManager");
+            System.out.println("method deleteTaskById in service.InMemoryTaskManager");
             return;
         }
 
@@ -86,7 +91,7 @@ public class InMemoryTaskManager implements TaskManager {
     //блок методов для subtasks
     //---------------------------------------------------
     @Override
-    public ArrayList<Subtask> getSubtasks() {
+    public List<Subtask> getSubtasks() {
         return new ArrayList<>(subtasks.values());
     }
 
@@ -104,7 +109,7 @@ public class InMemoryTaskManager implements TaskManager {
     public Subtask getSubtaskById(Integer id) {
         if (!subtasks.containsKey(id)) {
             System.out.println("There's no subtask with id " + id);
-            System.out.println("method getSubtaskById in InMemoryTaskManager");
+            System.out.println("method getSubtaskById in service.InMemoryTaskManager");
             return null;
         }
 
@@ -117,19 +122,19 @@ public class InMemoryTaskManager implements TaskManager {
     public void createSubtask(Subtask subtask) {
         if(!epics.containsKey(subtask.getEpicId())) {
             System.out.println("for this subtask doesn't exist epic with id = " + subtask.getEpicId());
-            System.out.println("method createSubtask in InMemoryTaskManager");
+            System.out.println("method createSubtask in service.InMemoryTaskManager");
             return;
         }
 
         if (subtasks.containsKey(subtask.getId())) {
             System.out.println("subtask already exists with id = " + subtask.getId());
-            System.out.println("method createSubtask in InMemoryTaskManager");
+            System.out.println("method createSubtask in service.InMemoryTaskManager");
             return;
         }
 
         if (epics.containsKey(subtask.getId()) || tasks.containsKey(subtask.getId())) {
             System.out.println("already exists another task with id = " + subtask.getId());
-            System.out.println("method createSubtask in InMemoryTaskManager");
+            System.out.println("method createSubtask in service.InMemoryTaskManager");
             return;
         }
 
@@ -145,14 +150,14 @@ public class InMemoryTaskManager implements TaskManager {
         if (Objects.isNull(subtask.getId()) || !subtasks.containsKey(subtask.getId())) {
             System.out.println("task does not exist with id = " + subtask.getId() +
                     ". Please, check if id is correct.");
-            System.out.println("method updateSubtask in InMemoryTaskManager");
+            System.out.println("method updateSubtask in service.InMemoryTaskManager");
             return;
         }
 
         if (Objects.isNull(subtask.getEpicId()) ||
                 !subtask.getEpicId().equals(subtasks.get(subtask.getId()).getEpicId())) {
-            System.out.println("Epic id is incorrect");
-            System.out.println("method updateSubtask in InMemoryTaskManager");
+            System.out.println("model.Epic id is incorrect");
+            System.out.println("method updateSubtask in service.InMemoryTaskManager");
             return;
         }
 
@@ -165,7 +170,7 @@ public class InMemoryTaskManager implements TaskManager {
     public void deleteSubtaskById(Integer id) {
         if (!subtasks.containsKey(id)) {
             System.out.println("There is no subtask with id = " + id + " in subtasks");
-            System.out.println("method deleteSubtaskById in InMemoryTaskManager");
+            System.out.println("method deleteSubtaskById in service.InMemoryTaskManager");
             return;
         }
 
@@ -178,7 +183,7 @@ public class InMemoryTaskManager implements TaskManager {
     //блок методов для epics
     //---------------------------------------------------
     @Override
-    public ArrayList<Epic> getEpics() {
+    public List<Epic> getEpics() {
         return new ArrayList<>(epics.values());
     }
 
@@ -192,7 +197,7 @@ public class InMemoryTaskManager implements TaskManager {
     public Epic getEpicById(Integer id) {
         if (!epics.containsKey(id)) {
             System.out.println("There's no epic with id " + id);
-            System.out.println("method getEpicById in InMemoryTaskManager");
+            System.out.println("method getEpicById in service.InMemoryTaskManager");
             return null;
         }
 
@@ -205,7 +210,7 @@ public class InMemoryTaskManager implements TaskManager {
     public void createEpic(Epic epic) {
         if (epics.containsKey(epic.getId())) {
             System.out.println("task already exists with id = " + epic.getId());
-            System.out.println("method createEpic in InMemoryTaskManager");
+            System.out.println("method createEpic in service.InMemoryTaskManager");
             return;
         }
 
@@ -218,7 +223,7 @@ public class InMemoryTaskManager implements TaskManager {
     public void updateEpic(Epic epic) {
         if (Objects.isNull(epic.getId()) || !epics.containsKey(epic.getId())) {
             System.out.println("task does not exist with id = " + epic.getId() + ". Please, check if id is correct.");
-            System.out.println("method updateEpic in InMemoryTaskManager");
+            System.out.println("method updateEpic in service.InMemoryTaskManager");
             return;
         }
 
@@ -230,7 +235,7 @@ public class InMemoryTaskManager implements TaskManager {
     public void deleteEpicById(Integer id) {
         if (!epics.containsKey(id)) {
             System.out.println("There is no epic with id = " + id + " in epics");
-            System.out.println("method deleteEpicById in InMemoryTaskManager");
+            System.out.println("method deleteEpicById in service.InMemoryTaskManager");
             return;
         }
 
@@ -242,10 +247,10 @@ public class InMemoryTaskManager implements TaskManager {
     }
 
     @Override
-    public ArrayList<Subtask> getEpicsSubtasksById(int epicId) {
+    public List<Subtask> getEpicsSubtasksById(int epicId) {
         if (!epics.containsKey(epicId)) {
             System.out.println("There is no epic with id = " + epicId + " in epics");
-            System.out.println("method getEpicsSubtasks in InMemoryTaskManager");
+            System.out.println("method getEpicsSubtasks in service.InMemoryTaskManager");
             return null;
         }
 
@@ -255,7 +260,7 @@ public class InMemoryTaskManager implements TaskManager {
     //---------------------------------------------------
     //История просмотров задач
     //---------------------------------------------------
-    public ArrayList<Task> getHistory() {
+    public List<Task> getHistory() {
         return historyManager.getHistory();
     }
 
@@ -264,8 +269,8 @@ public class InMemoryTaskManager implements TaskManager {
     //---------------------------------------------------
     private void checkEpicStatus(Integer id) {
         if (!epics.containsKey(id)) {
-            System.out.println("Epic with id=" + id + " does not exist");
-            System.out.println("method checkEpicStatus in InMemoryTaskManager");
+            System.out.println("model.Epic with id=" + id + " does not exist");
+            System.out.println("method checkEpicStatus in service.InMemoryTaskManager");
             return;
         }
 
@@ -295,7 +300,7 @@ public class InMemoryTaskManager implements TaskManager {
     //---------------------------------------------------
     @Override
     public String toString() {
-        return "TaskManager{" +
+        return "service.TaskManager{" +
                 "id=" + id +
                 ", tasks=" + tasks +
                 ", subtasks=" + subtasks +

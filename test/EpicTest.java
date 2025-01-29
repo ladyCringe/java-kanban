@@ -1,5 +1,10 @@
+import model.Epic;
+import model.Subtask;
+import model.TaskStatus;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import service.Managers;
+import service.TaskManager;
 
 import java.util.ArrayList;
 
@@ -16,7 +21,7 @@ class EpicTest {
         epic = new Epic("testName", "testDescription");
         manager = Managers.getDefault();
         manager.createEpic(epic);
-        subtask = new Subtask("SubtaskName", "SubtaskDescription",TaskStatus.NEW, epic.getId());
+        subtask = new Subtask("SubtaskName", "SubtaskDescription", TaskStatus.NEW, epic.getId());
     }
 
     @Test

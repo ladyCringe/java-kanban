@@ -1,11 +1,17 @@
-import java.util.ArrayList;
+package service;
+
+import model.Epic;
+import model.Subtask;
+import model.Task;
+
+import java.util.List;
 
 public interface TaskManager {
 
     //---------------------------------------------------
     //блок методов для tasks
     //---------------------------------------------------
-    ArrayList<Task> getTasks();
+    List<Task> getTasks();
 
     void deleteAllTasks();
 
@@ -20,7 +26,7 @@ public interface TaskManager {
     //---------------------------------------------------
     //блок методов для subtasks
     //---------------------------------------------------
-    ArrayList<Subtask> getSubtasks();
+    List<Subtask> getSubtasks();
 
     void deleteAllSubtasks();
 
@@ -35,7 +41,7 @@ public interface TaskManager {
     //---------------------------------------------------
     //блок методов для epics
     //---------------------------------------------------
-    ArrayList<Epic> getEpics();
+    List<Epic> getEpics();
 
     void deleteAllEpics();
 
@@ -47,10 +53,10 @@ public interface TaskManager {
 
     void deleteEpicById(Integer id);
 
-    ArrayList<Subtask> getEpicsSubtasksById(int epicId);
+    List<Subtask> getEpicsSubtasksById(int epicId);
 
     //---------------------------------------------------
     //История просмотров задач
     //---------------------------------------------------
-    ArrayList<Task> getHistory();
+    List<Task> getHistory();
 }

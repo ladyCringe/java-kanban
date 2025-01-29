@@ -1,5 +1,10 @@
+import model.Epic;
+import model.Subtask;
+import model.Task;
+import model.TaskStatus;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import service.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -15,8 +20,8 @@ class ManagersTest {
     public void beforeEach() {
         manager = Managers.getDefault();
         historyManager = Managers.getDefaultHistory();
-        task = new Task("Test Task", "Test Description", TaskStatus.NEW);
-        epic = new Epic("Test Epic", "Test Description");
+        task = new Task("Test model.Task", "Test Description", TaskStatus.NEW);
+        epic = new Epic("Test model.Epic", "Test Description");
         manager.createTask(task);
         manager.createEpic(epic);
         subtask = new Subtask("SubtaskName", "SubtaskDescription",TaskStatus.NEW, epic.getId());

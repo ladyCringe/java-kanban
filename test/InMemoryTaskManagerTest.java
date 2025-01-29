@@ -1,7 +1,14 @@
+import model.Epic;
+import model.Subtask;
+import model.Task;
+import model.TaskStatus;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import service.Managers;
+import service.TaskManager;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -14,8 +21,8 @@ class InMemoryTaskManagerTest {
     @BeforeEach
     public void beforeEach() {
         manager = Managers.getDefault();
-        task = new Task("Test Task", "Task Description", TaskStatus.NEW);
-        epic = new Epic("Test Epic", "Epic Description");
+        task = new Task("Test model.Task", "model.Task Description", TaskStatus.NEW);
+        epic = new Epic("Test model.Epic", "model.Epic Description");
     }
 
     //---------------------------------------------------
@@ -24,7 +31,7 @@ class InMemoryTaskManagerTest {
     @Test
     void getTasks() {
         manager.createTask(task);
-        Task task2 = new Task("New Task Name", "New Task Description", TaskStatus.NEW);
+        Task task2 = new Task("New model.Task Name", "New model.Task Description", TaskStatus.NEW);
         manager.createTask(task2);
         ArrayList<Task> tasks = new ArrayList<>();
         tasks.add(task);
@@ -36,7 +43,7 @@ class InMemoryTaskManagerTest {
     @Test
     void deleteAllTasks() {
         manager.createTask(task);
-        Task task2 = new Task("New Task Name", "New Task Description", TaskStatus.NEW);
+        Task task2 = new Task("New model.Task Name", "New model.Task Description", TaskStatus.NEW);
         manager.createTask(task2);
         manager.deleteAllTasks();
 
@@ -59,7 +66,7 @@ class InMemoryTaskManagerTest {
         assertNotNull(task2);
         assertEquals(task, task2);
 
-        Task task3 = new Task("Test Task", "Task Description", TaskStatus.NEW);
+        Task task3 = new Task("Test model.Task", "model.Task Description", TaskStatus.NEW);
         task3.setId(2);
 
         task2 = manager.getTaskById(2);
@@ -70,17 +77,17 @@ class InMemoryTaskManagerTest {
     @Test
     void updateTask() {
         manager.createTask(task);
-        task.setName("Updated Task Name");
-        task.setDescription("Updated Task Description");
+        task.setName("Updated model.Task Name");
+        task.setDescription("Updated model.Task Description");
         task.setStatus(TaskStatus.DONE);
         manager.updateTask(task);
         Task task2 = manager.getTaskById(task.getId());
 
-        assertEquals("Updated Task Name", task2.getName());
-        assertEquals("Updated Task Description", task2.getDescription());
+        assertEquals("Updated model.Task Name", task2.getName());
+        assertEquals("Updated model.Task Description", task2.getDescription());
         assertEquals(TaskStatus.DONE, task2.getStatus());
 
-        Task task3 = new Task("New Task Name", "New Task Description", TaskStatus.NEW);
+        Task task3 = new Task("New model.Task Name", "New model.Task Description", TaskStatus.NEW);
         task2.setId(10);
         manager.updateTask(task3);
 
@@ -90,7 +97,7 @@ class InMemoryTaskManagerTest {
     @Test
     void deleteTaskById() {
         manager.createTask(task);
-        Task task2 = new Task("New Task Name", "New Task Description", TaskStatus.NEW);
+        Task task2 = new Task("New model.Task Name", "New model.Task Description", TaskStatus.NEW);
         task2.setId(2);
         manager.deleteTaskById(2);
 
@@ -108,9 +115,9 @@ class InMemoryTaskManagerTest {
     void deleteAllSubtasks() {
         manager.createEpic(epic);
 
-        Subtask subtask1 = new Subtask("Subtask 1", "Description Subtask 1",
+        Subtask subtask1 = new Subtask("model.Subtask 1", "Description model.Subtask 1",
                 TaskStatus.NEW, epic.getId());
-        Subtask subtask2 = new Subtask("Subtask 2", "Description Subtask 2",
+        Subtask subtask2 = new Subtask("model.Subtask 2", "Description model.Subtask 2",
                 TaskStatus.IN_PROGRESS, epic.getId());
 
         manager.createSubtask(subtask1);
@@ -128,21 +135,21 @@ class InMemoryTaskManagerTest {
     void testCreateSubtask() {
         manager.createEpic(epic);
 
-        Subtask subtask = new Subtask("Subtask 1", "Subtask Description", TaskStatus.NEW, epic.getId());
+        Subtask subtask = new Subtask("model.Subtask 1", "model.Subtask Description", TaskStatus.NEW, epic.getId());
         manager.createSubtask(subtask);
         manager.createSubtask(subtask);
 
         assertEquals(1, manager.getSubtasks().size());
 
-        Epic newEpic = new Epic("New Epic Description", "New Epic Description");
+        Epic newEpic = new Epic("New model.Epic Description", "New model.Epic Description");
         newEpic.setId(2);
-        Subtask subtask2 = new Subtask("Subtask 2", "Subtask Description",
+        Subtask subtask2 = new Subtask("model.Subtask 2", "model.Subtask Description",
                 TaskStatus.NEW, newEpic.getId());
         manager.createSubtask(subtask2);
 
         assertEquals(1, manager.getSubtasks().size());
 
-        Subtask subtask3 = new Subtask("Subtask 2", "Subtask Description",
+        Subtask subtask3 = new Subtask("model.Subtask 2", "model.Subtask Description",
                 TaskStatus.NEW, epic.getId());
         subtask3.setId(epic.getId());
         manager.createSubtask(subtask3);
@@ -152,16 +159,16 @@ class InMemoryTaskManagerTest {
     void testGetSubtaskById() {
         manager.createEpic(epic);
 
-        Subtask subtask = new Subtask("Subtask 1", "Subtask Description",
+        Subtask subtask = new Subtask("model.Subtask 1", "model.Subtask Description",
                 TaskStatus.NEW, epic.getId());
         manager.createSubtask(subtask);
 
         Subtask subtask2 = manager.getSubtaskById(2);
 
-        assertNotNull(subtask2, "Subtask should be retrievable after creation");
+        assertNotNull(subtask2, "model.Subtask should be retrievable after creation");
         assertEquals(subtask, subtask2, "Retrieved subtask should match the created subtask");
 
-        Subtask subtask3 = new Subtask("Subtask 2", "Subtask Description",
+        Subtask subtask3 = new Subtask("model.Subtask 2", "model.Subtask Description",
                 TaskStatus.NEW, epic.getId());
         subtask3.setId(3);
 
@@ -174,36 +181,36 @@ class InMemoryTaskManagerTest {
     void testUpdateSubtask() {
         manager.createEpic(epic);
 
-        Subtask subtask = new Subtask("Subtask 1", "Subtask Description",
+        Subtask subtask = new Subtask("model.Subtask 1", "model.Subtask Description",
                 TaskStatus.NEW, epic.getId());
         manager.createSubtask(subtask);
 
-        subtask.setName("Updated Subtask Name");
-        subtask.setDescription("Updated Subtask Description");
+        subtask.setName("Updated model.Subtask Name");
+        subtask.setDescription("Updated model.Subtask Description");
         subtask.setStatus(TaskStatus.IN_PROGRESS);
         manager.updateSubtask(subtask);
 
         Subtask updatedSubtask = manager.getSubtaskById(2);
-        assertEquals("Updated Subtask Name", updatedSubtask.getName());
-        assertEquals("Updated Subtask Description", updatedSubtask.getDescription());
+        assertEquals("Updated model.Subtask Name", updatedSubtask.getName());
+        assertEquals("Updated model.Subtask Description", updatedSubtask.getDescription());
         assertEquals(TaskStatus.IN_PROGRESS, updatedSubtask.getStatus());
         assertEquals(TaskStatus.IN_PROGRESS, epic.getStatus());
 
-        Subtask subtask2 = new Subtask("Subtask 22", "Subtask Description",
+        Subtask subtask2 = new Subtask("model.Subtask 22", "model.Subtask Description",
                 TaskStatus.NEW, epic.getId());
         subtask2.setId(10);
         manager.updateSubtask(subtask2);
 
         assertNull(manager.getSubtaskById(10));
 
-        Epic newEpic = new Epic("New Epic Description", "New Epic Description");
+        Epic newEpic = new Epic("New model.Epic Description", "New model.Epic Description");
         newEpic.setId(2);
-        Subtask subtask3 = new Subtask("Subtask 3", "Subtask Description",
+        Subtask subtask3 = new Subtask("model.Subtask 3", "model.Subtask Description",
                 TaskStatus.NEW, newEpic.getId());
         subtask3.setId(subtask.getId());
         manager.updateSubtask(subtask3);
 
-        assertEquals("Updated Subtask Name", updatedSubtask.getName());
+        assertEquals("Updated model.Subtask Name", updatedSubtask.getName());
         assertEquals(TaskStatus.IN_PROGRESS, updatedSubtask.getStatus());
         assertEquals(TaskStatus.IN_PROGRESS, epic.getStatus());
     }
@@ -212,9 +219,9 @@ class InMemoryTaskManagerTest {
     void deleteSubtaskById() {
         manager.createEpic(epic);
 
-        Subtask subtask1 = new Subtask("Subtask 1", "Description Subtask 1",
+        Subtask subtask1 = new Subtask("model.Subtask 1", "Description model.Subtask 1",
                 TaskStatus.NEW, epic.getId());
-        Subtask subtask2 = new Subtask("Subtask 2", "Description Subtask 2",
+        Subtask subtask2 = new Subtask("model.Subtask 2", "Description model.Subtask 2",
                 TaskStatus.IN_PROGRESS, epic.getId());
 
         manager.createSubtask(subtask1);
@@ -240,7 +247,7 @@ class InMemoryTaskManagerTest {
     //---------------------------------------------------
     @Test
     void deleteAllEpics() {
-        Epic epic2 = new Epic("Epic 2", "Description Epic 2");
+        Epic epic2 = new Epic("model.Epic 2", "Description model.Epic 2");
         manager.createEpic(epic);
         manager.createEpic(epic2);
 
@@ -269,7 +276,7 @@ class InMemoryTaskManagerTest {
         assertNotNull(newEpic);
         assertEquals(epic, newEpic);
 
-        Epic newEpic2 = new Epic("New Epic Description", "New Epic Description");
+        Epic newEpic2 = new Epic("New model.Epic Description", "New model.Epic Description");
         newEpic2.setId(2);
         newEpic = manager.getEpicById(2);
 
@@ -280,15 +287,15 @@ class InMemoryTaskManagerTest {
     void updateEpic() {
         manager.createEpic(epic);
 
-        epic.setName("Updated Epic 1");
-        epic.setDescription("Updated Description Epic 1");
+        epic.setName("Updated model.Epic 1");
+        epic.setDescription("Updated Description model.Epic 1");
         manager.updateEpic(epic);
 
         Epic updatedEpic = manager.getEpicById(1);
-        assertEquals("Updated Epic 1", updatedEpic.getName());
-        assertEquals("Updated Description Epic 1", updatedEpic.getDescription());
+        assertEquals("Updated model.Epic 1", updatedEpic.getName());
+        assertEquals("Updated Description model.Epic 1", updatedEpic.getDescription());
 
-        Epic epic2 = new Epic("New Epic Description", "New Epic Description");
+        Epic epic2 = new Epic("New model.Epic Description", "New model.Epic Description");
         epic2.setId(2);
         manager.updateEpic(epic2);
 
@@ -299,9 +306,9 @@ class InMemoryTaskManagerTest {
     @Test
     void deleteEpicById() {
         manager.createEpic(epic);
-        Subtask subtask = new Subtask("Subtask", "Description", TaskStatus.NEW, epic.getId());
+        Subtask subtask = new Subtask("model.Subtask", "Description", TaskStatus.NEW, epic.getId());
         manager.createSubtask(subtask);
-        Epic epic2 = new Epic("Epic 2", "Description Epic 2");
+        Epic epic2 = new Epic("model.Epic 2", "Description model.Epic 2");
         epic2.setId(3);
         manager.deleteEpicById(epic2.getId());
 
@@ -318,27 +325,27 @@ class InMemoryTaskManagerTest {
     void getEpicsSubtasksById() {
         manager.createEpic(epic);
 
-        Subtask subtask1 = new Subtask("Subtask 1", "Description Subtask 1",
+        Subtask subtask1 = new Subtask("model.Subtask 1", "Description model.Subtask 1",
                 TaskStatus.NEW, epic.getId());
-        Subtask subtask2 = new Subtask("Subtask 2", "Description Subtask 2",
+        Subtask subtask2 = new Subtask("model.Subtask 2", "Description model.Subtask 2",
                 TaskStatus.IN_PROGRESS, epic.getId());
 
         manager.createSubtask(subtask1);
         manager.createSubtask(subtask2);
 
-        ArrayList<Subtask> subtasks = manager.getEpicsSubtasksById(epic.getId());
+        List<Subtask> subtasks = manager.getEpicsSubtasksById(epic.getId());
 
         assertEquals(2, subtasks.size());
         assertTrue(subtasks.contains(subtask1));
         assertTrue(subtasks.contains(subtask2));
         assertEquals(TaskStatus.IN_PROGRESS, epic.getStatus());
 
-        Epic epic2 = new Epic("Epic 2", "Description Epic 2");
+        Epic epic2 = new Epic("model.Epic 2", "Description model.Epic 2");
         epic2.setId(3);
-        Subtask subtask3 = new Subtask("Subtask 2", "Description Subtask 2",
+        Subtask subtask3 = new Subtask("model.Subtask 2", "Description model.Subtask 2",
                 TaskStatus.IN_PROGRESS, epic2.getId());
         epic2.addSubtask(subtask3);
-        ArrayList<Subtask> subtasks2 = manager.getEpicsSubtasksById(epic2.getId());
+        List<Subtask> subtasks2 = manager.getEpicsSubtasksById(epic2.getId());
         assertNull(subtasks2);
     }
 
@@ -355,25 +362,25 @@ class InMemoryTaskManagerTest {
         assertEquals(TaskStatus.DONE, manager.getTaskById(task.getId()).getStatus());
 
         manager.createEpic(epic);
-        Epic epic2 = new Epic("Epic 2", "Description Epic 2");
+        Epic epic2 = new Epic("model.Epic 2", "Description model.Epic 2");
         epic2.setId(epic.getId());
         manager.updateEpic(epic2);
 
         assertEquals(1, manager.getEpics().size());
-        assertEquals("Epic 2", manager.getEpicById(epic.getId()).getName());
-        assertEquals("Description Epic 2", manager.getEpicById(epic.getId()).getDescription());
+        assertEquals("model.Epic 2", manager.getEpicById(epic.getId()).getName());
+        assertEquals("Description model.Epic 2", manager.getEpicById(epic.getId()).getDescription());
 
-        Subtask subtask1 = new Subtask("Subtask 1", "Description Subtask 1",
+        Subtask subtask1 = new Subtask("model.Subtask 1", "Description model.Subtask 1",
                 TaskStatus.NEW, epic.getId());
         manager.createSubtask(subtask1);
-        Subtask subtask2 = new Subtask("Subtask 2", "Description Subtask 2",
+        Subtask subtask2 = new Subtask("model.Subtask 2", "Description model.Subtask 2",
                 TaskStatus.IN_PROGRESS, epic.getId());
         subtask2.setId(subtask1.getId());
         manager.updateSubtask(subtask2);
 
         assertEquals(1, manager.getSubtasks().size());
-        assertEquals("Subtask 2", manager.getSubtaskById(subtask1.getId()).getName());
-        assertEquals("Description Subtask 2", manager.getSubtaskById(subtask1.getId()).getDescription());
+        assertEquals("model.Subtask 2", manager.getSubtaskById(subtask1.getId()).getName());
+        assertEquals("Description model.Subtask 2", manager.getSubtaskById(subtask1.getId()).getDescription());
         assertEquals(TaskStatus.IN_PROGRESS, epic.getStatus());
         assertEquals(TaskStatus.IN_PROGRESS, manager.getSubtaskById(subtask1.getId()).getStatus());
     }
