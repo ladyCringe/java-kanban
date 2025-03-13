@@ -4,16 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="398610fb-ce3c-4875-a383-31eda8ee1778" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Epic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Epic.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/service/HistoryManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/HistoryManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/service/InMemoryHistoryManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/InMemoryHistoryManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/service/InMemoryTaskManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/InMemoryTaskManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/InMemoryHistoryManagerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/InMemoryHistoryManagerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/InMemoryTaskManagerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/InMemoryTaskManagerTest.java" afterDir="false" />
-    </list>
+    <list default="true" id="398610fb-ce3c-4875-a383-31eda8ee1778" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -201,7 +192,7 @@
       <workItem from="1741187019849" duration="33000" />
       <workItem from="1741855107915" duration="11572000" />
       <workItem from="1741873582876" duration="5410000" />
-      <workItem from="1741883119808" duration="12747000" />
+      <workItem from="1741883119808" duration="13082000" />
     </task>
     <servers />
   </component>

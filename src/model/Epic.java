@@ -59,7 +59,7 @@ public class Epic extends Task {
     }
 
     @Override
-    public Task cloneTask(){
+    public Task cloneTask() {
         Epic newTask =  new Epic(getName(), getDescription());
         newTask.setId(getId());
         newTask.setStatus(getStatus());
