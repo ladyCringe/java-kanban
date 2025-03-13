@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="398610fb-ce3c-4875-a383-31eda8ee1778" name="Changes" comment="" />
+    <list default="true" id="398610fb-ce3c-4875-a383-31eda8ee1778" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/EpicTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/EpicTest.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -36,9 +39,9 @@
     "JUnit.All in java-kanban.executor": "Coverage",
     "JUnit.EpicTest.addSubtask.executor": "Run",
     "JUnit.EpicTest.deleteAllSubtasks.executor": "Run",
-    "JUnit.EpicTest.executor": "Coverage",
+    "JUnit.EpicTest.executor": "Run",
     "JUnit.EpicTest.getSubtasks.executor": "Run",
-    "JUnit.EpicTest.removeSubtask.executor": "Coverage",
+    "JUnit.EpicTest.removeSubtask.executor": "Run",
     "JUnit.EpicTest.replaceSubtask.executor": "Coverage",
     "JUnit.EpicTest.testEpicCannotContainItself.executor": "Run",
     "JUnit.InMemoryHistoryManagerTest.executor": "Run",
@@ -116,7 +119,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Main">
+  <component name="RunManager" selected="JUnit.All in java-kanban">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="java-kanban" />
@@ -124,39 +127,38 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="InMemoryHistoryManagerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="All in java-kanban" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="java-kanban" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="InMemoryHistoryManagerTest" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="EpicTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="java-kanban" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="EpicTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="InMemoryTaskManagerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="EpicTest.removeSubtask" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="java-kanban" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="InMemoryTaskManagerTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="InMemoryTaskManagerTest.getEpicsSubtasksById" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="java-kanban" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="InMemoryTaskManagerTest" />
-      <option name="METHOD_NAME" value="getEpicsSubtasksById" />
+      <option name="MAIN_CLASS_NAME" value="EpicTest" />
+      <option name="METHOD_NAME" value="removeSubtask" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="InMemoryTaskManagerTest.testSubtaskDeletionRemovesItFromEpic" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="EpicTest.replaceSubtask" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="java-kanban" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="InMemoryTaskManagerTest" />
-      <option name="METHOD_NAME" value="testSubtaskDeletionRemovesItFromEpic" />
+      <option name="MAIN_CLASS_NAME" value="EpicTest" />
+      <option name="METHOD_NAME" value="replaceSubtask" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -164,11 +166,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.All in java-kanban" />
+        <item itemvalue="JUnit.EpicTest.replaceSubtask" />
+        <item itemvalue="JUnit.EpicTest.removeSubtask" />
+        <item itemvalue="JUnit.EpicTest" />
         <item itemvalue="Application.Main" />
-        <item itemvalue="JUnit.InMemoryHistoryManagerTest" />
-        <item itemvalue="JUnit.InMemoryTaskManagerTest" />
-        <item itemvalue="JUnit.InMemoryTaskManagerTest.testSubtaskDeletionRemovesItFromEpic" />
-        <item itemvalue="JUnit.InMemoryTaskManagerTest.getEpicsSubtasksById" />
       </list>
     </recent_temporary>
   </component>
@@ -192,7 +194,7 @@
       <workItem from="1741187019849" duration="33000" />
       <workItem from="1741855107915" duration="11572000" />
       <workItem from="1741873582876" duration="5410000" />
-      <workItem from="1741883119808" duration="13510000" />
+      <workItem from="1741883119808" duration="14621000" />
     </task>
     <servers />
   </component>
