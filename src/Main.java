@@ -25,12 +25,12 @@ public class Main {
         manager.createEpic(epic1);
         manager.createEpic(epic2);
 
-        Subtask subtask1_1 = new Subtask("subtask 1", "of epic 1", TaskStatus.NEW, epic1.getId());
-        Subtask subtask1_2 = new Subtask("subtask 2", "of epic 1", TaskStatus.NEW, epic1.getId());
-        Subtask subtask1_3 = new Subtask("subtask 3", "of epic 1", TaskStatus.NEW, epic1.getId());
-        manager.createSubtask(subtask1_1);
-        manager.createSubtask(subtask1_2);
-        manager.createSubtask(subtask1_3);
+        Subtask subtask1 = new Subtask("subtask 1", "of epic 1", TaskStatus.NEW, epic1.getId());
+        Subtask subtask2 = new Subtask("subtask 2", "of epic 1", TaskStatus.NEW, epic1.getId());
+        Subtask subtask3 = new Subtask("subtask 3", "of epic 1", TaskStatus.NEW, epic1.getId());
+        manager.createSubtask(subtask1);
+        manager.createSubtask(subtask2);
+        manager.createSubtask(subtask3);
 
         System.out.println(manager.getTaskById(task1.getId()));
         System.out.println(manager.getHistory());
@@ -50,10 +50,10 @@ public class Main {
         System.out.println(manager.getHistory());
         System.out.println("-".repeat(10));
 
-        System.out.println(manager.getSubtaskById(subtask1_1.getId()));
-        System.out.println(manager.getSubtaskById(subtask1_3.getId()));
-        System.out.println(manager.getSubtaskById(subtask1_1.getId()));
-        System.out.println(manager.getSubtaskById(subtask1_2.getId()));
+        System.out.println(manager.getSubtaskById(subtask1.getId()));
+        System.out.println(manager.getSubtaskById(subtask3.getId()));
+        System.out.println(manager.getSubtaskById(subtask1.getId()));
+        System.out.println(manager.getSubtaskById(subtask2.getId()));
         System.out.println(manager.getHistory());
         System.out.println("-".repeat(10));
 

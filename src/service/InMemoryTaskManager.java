@@ -10,9 +10,9 @@ import java.util.*;
 public class InMemoryTaskManager implements TaskManager {
 
     private Integer id = 0;
-    private final Map<Integer,Task> tasks;
-    private final Map<Integer,Subtask> subtasks;
-    private final Map<Integer,Epic> epics;
+    private final Map<Integer, Task> tasks;
+    private final Map<Integer, Subtask> subtasks;
+    private final Map<Integer, Epic> epics;
     private final HistoryManager historyManager;
 
     public InMemoryTaskManager() {
@@ -171,7 +171,7 @@ public class InMemoryTaskManager implements TaskManager {
         }
 
         epics.get(subtask.getEpicId()).replaceSubtask(subtasks.get(subtask.getId()), subtask);
-        subtasks.put(subtask.getId(),(Subtask) subtask.cloneTask());
+        subtasks.put(subtask.getId(), (Subtask) subtask.cloneTask());
         checkEpicStatus(subtask.getEpicId());
         historyManager.update(subtask.getId(), subtask.cloneTask());
     }
@@ -201,7 +201,7 @@ public class InMemoryTaskManager implements TaskManager {
 
     @Override
     public void deleteAllEpics() {
-        for (Subtask sub  : subtasks.values()) {
+        for (Subtask sub : subtasks.values()) {
             historyManager.remove(sub.getId());
         }
 
@@ -237,7 +237,7 @@ public class InMemoryTaskManager implements TaskManager {
 
         updateId();
         epic.setId(id);
-        epics.put(id,(Epic) epic.cloneTask());
+        epics.put(id, (Epic) epic.cloneTask());
     }
 
     @Override

@@ -15,7 +15,7 @@ public class Subtask extends Task {
 
     @Override
     public Task cloneTask() {
-        Subtask newTask =  new Subtask(getName(), getDescription(), getStatus(), epicId);
+        Subtask newTask = new Subtask(getName(), getDescription(), getStatus(), epicId);
         newTask.setId(getId());
         return newTask;
     }

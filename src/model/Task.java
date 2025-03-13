@@ -58,7 +58,7 @@ public class Task {
     //создание копии
     //---------------------------------------------------
     public Task cloneTask() {
-        Task newTask =  new Task(name, description, status);
+        Task newTask = new Task(name, description, status);
         newTask.setId(id);
         return newTask;
     }
