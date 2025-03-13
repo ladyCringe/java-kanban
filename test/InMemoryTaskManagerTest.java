@@ -51,11 +51,34 @@ class InMemoryTaskManagerTest {
     }
 
     @Test
+    void deleteAllTasksHistory() {
+        manager.createTask(task);
+        Task task2 = new Task("New model.Task Name", "New model.Task Description", TaskStatus.NEW);
+        manager.createTask(task2);
+
+        assertEquals(task, manager.getTaskById(task.getId()));
+        assertEquals(task2, manager.getTaskById(task2.getId()));
+        assertEquals(2, manager.getHistory().size());
+
+        manager.deleteAllTasks();
+
+        assertTrue(manager.getHistory().isEmpty());
+    }
+
+    @Test
     void testCreateTask() {
         manager.createTask(task);
         manager.createTask(task);
 
         assertEquals(1, manager.getTasks().size());
+
+        task.setId(2);
+        manager.createTask(task);
+        assertEquals(2, manager.getTasks().size());
+
+        task.setId(3);
+        assertEquals(1, manager.getTaskById(1).getId());
+        assertEquals(2, manager.getTaskById(2).getId());
     }
 
     @Test
@@ -77,6 +100,10 @@ class InMemoryTaskManagerTest {
     @Test
     void updateTask() {
         manager.createTask(task);
+
+        assertEquals(task, manager.getTaskById(task.getId()));
+        assertEquals(1, manager.getHistory().size());
+
         task.setName("Updated model.Task Name");
         task.setDescription("Updated model.Task Description");
         task.setStatus(TaskStatus.DONE);
@@ -86,6 +113,9 @@ class InMemoryTaskManagerTest {
         assertEquals("Updated model.Task Name", task2.getName());
         assertEquals("Updated model.Task Description", task2.getDescription());
         assertEquals(TaskStatus.DONE, task2.getStatus());
+
+        assertEquals(task2, manager.getTaskById(task.getId()));
+        assertEquals(1, manager.getHistory().size());
 
         Task task3 = new Task("New model.Task Name", "New model.Task Description", TaskStatus.NEW);
         task2.setId(10);
@@ -97,15 +127,18 @@ class InMemoryTaskManagerTest {
     @Test
     void deleteTaskById() {
         manager.createTask(task);
+        assertEquals(task, manager.getTaskById(task.getId()));
         Task task2 = new Task("New model.Task Name", "New model.Task Description", TaskStatus.NEW);
         task2.setId(2);
         manager.deleteTaskById(2);
 
         assertEquals(1, manager.getTasks().size());
+        assertEquals(1, manager.getHistory().size());
 
         manager.deleteTaskById(1);
 
         assertEquals(0, manager.getTasks().size());
+        assertTrue(manager.getHistory().isEmpty());
     }
 
     //---------------------------------------------------
@@ -123,12 +156,39 @@ class InMemoryTaskManagerTest {
         manager.createSubtask(subtask1);
         manager.createSubtask(subtask2);
 
+        assertEquals(subtask1, manager.getSubtaskById(subtask1.getId()));
+        assertEquals(subtask2, manager.getSubtaskById(subtask2.getId()));
+        assertEquals(2, manager.getHistory().size());
+
+        manager.deleteAllSubtasks();
+
+        assertTrue(manager.getSubtasks().isEmpty());
+        assertTrue(manager.getEpicsSubtasksById(epic.getId()).isEmpty());
+        assertTrue(manager.getHistory().isEmpty());
+    }
+
+    @Test
+    void deleteAllSubtasksHistory() {
+        manager.createEpic(epic);
+
+        Subtask subtask1 = new Subtask("model.Subtask 1", "Description model.Subtask 1",
+                TaskStatus.NEW, epic.getId());
+        Subtask subtask2 = new Subtask("model.Subtask 2", "Description model.Subtask 2",
+                TaskStatus.IN_PROGRESS, epic.getId());
+
+        manager.createSubtask(subtask1);
+        manager.createSubtask(subtask2);
+
+        assertEquals(subtask1, manager.getSubtaskById(subtask1.getId()));
+        assertEquals(subtask2, manager.getSubtaskById(subtask2.getId()));
+        assertEquals(2, manager.getHistory().size());
         assertEquals(2, manager.getSubtasks().size());
 
         manager.deleteAllSubtasks();
 
         assertTrue(manager.getSubtasks().isEmpty());
         assertTrue(manager.getEpicsSubtasksById(epic.getId()).isEmpty());
+        assertTrue(manager.getHistory().isEmpty());
     }
 
     @Test
@@ -185,6 +245,9 @@ class InMemoryTaskManagerTest {
                 TaskStatus.NEW, epic.getId());
         manager.createSubtask(subtask);
 
+        assertEquals(subtask, manager.getSubtaskById(subtask.getId()));
+        assertEquals(1, manager.getHistory().size());
+
         subtask.setName("Updated model.Subtask Name");
         subtask.setDescription("Updated model.Subtask Description");
         subtask.setStatus(TaskStatus.IN_PROGRESS);
@@ -194,7 +257,10 @@ class InMemoryTaskManagerTest {
         assertEquals("Updated model.Subtask Name", updatedSubtask.getName());
         assertEquals("Updated model.Subtask Description", updatedSubtask.getDescription());
         assertEquals(TaskStatus.IN_PROGRESS, updatedSubtask.getStatus());
-        assertEquals(TaskStatus.IN_PROGRESS, epic.getStatus());
+        assertEquals(TaskStatus.IN_PROGRESS, manager.getEpicById(epic.getId()).getStatus());
+
+        assertEquals(updatedSubtask, manager.getSubtaskById(subtask.getId()));
+        assertEquals(2, manager.getHistory().size());
 
         Subtask subtask2 = new Subtask("model.Subtask 22", "model.Subtask Description",
                 TaskStatus.NEW, epic.getId());
@@ -212,7 +278,7 @@ class InMemoryTaskManagerTest {
 
         assertEquals("Updated model.Subtask Name", updatedSubtask.getName());
         assertEquals(TaskStatus.IN_PROGRESS, updatedSubtask.getStatus());
-        assertEquals(TaskStatus.IN_PROGRESS, epic.getStatus());
+        assertEquals(TaskStatus.IN_PROGRESS, manager.getEpicById(epic.getId()).getStatus());
     }
 
     @Test
@@ -227,19 +293,31 @@ class InMemoryTaskManagerTest {
         manager.createSubtask(subtask1);
         manager.createSubtask(subtask2);
 
+        assertEquals(subtask1, manager.getSubtaskById(subtask1.getId()));
+        assertEquals(subtask2, manager.getSubtaskById(subtask2.getId()));
         assertEquals(2, manager.getSubtasks().size());
+        assertEquals(2, manager.getHistory().size());
 
         manager.deleteSubtaskById(subtask1.getId());
 
         assertEquals(1, manager.getSubtasks().size());
         assertEquals(subtask2, manager.getSubtasks().getFirst());
-
+        assertEquals(1, manager.getHistory().size());
         assertFalse(manager.getEpicsSubtasksById(epic.getId()).contains(subtask1));
+        assertNull(manager.getSubtaskById(subtask1.getId()));
 
         manager.deleteSubtaskById(subtask1.getId());
 
         assertEquals(1, manager.getSubtasks().size());
         assertEquals(subtask2, manager.getSubtasks().getFirst());
+        assertEquals(1, manager.getHistory().size());
+        assertTrue(manager.getEpicsSubtasksById(epic.getId()).contains(subtask2));
+
+        manager.deleteSubtaskById(subtask2.getId());
+
+        assertEquals(0, manager.getSubtasks().size());
+        assertTrue(manager.getHistory().isEmpty());
+        assertNull(manager.getSubtaskById(subtask2.getId()));
     }
 
     //---------------------------------------------------
@@ -257,6 +335,39 @@ class InMemoryTaskManagerTest {
 
         assertTrue(manager.getEpics().isEmpty());
         assertTrue(manager.getSubtasks().isEmpty());
+    }
+
+    @Test
+    void deleteAllEpicsHistory() {
+        Epic epic2 = new Epic("model.Epic 2", "Description model.Epic 2");
+        manager.createEpic(epic);
+        manager.createEpic(epic2);
+
+        assertEquals(2, manager.getEpics().size());
+        assertEquals(epic, manager.getEpicById(epic.getId()));
+        assertEquals(epic2, manager.getEpicById(epic2.getId()));
+        assertEquals(2, manager.getHistory().size());
+
+        Subtask subtask1 = new Subtask("model.Subtask 1", "Description model.Subtask 1",
+                TaskStatus.NEW, epic.getId());
+        Subtask subtask2 = new Subtask("model.Subtask 2", "Description model.Subtask 2",
+                TaskStatus.IN_PROGRESS, epic2.getId());
+
+        manager.createSubtask(subtask1);
+        manager.createSubtask(subtask2);
+
+        assertEquals(subtask1, manager.getSubtaskById(subtask1.getId()));
+        assertEquals(subtask2, manager.getSubtaskById(subtask2.getId()));
+        assertEquals(4, manager.getHistory().size());
+        assertEquals(2, manager.getSubtasks().size());
+
+        manager.deleteAllEpics();
+
+        assertTrue(manager.getEpics().isEmpty());
+        assertTrue(manager.getSubtasks().isEmpty());
+        assertNull(manager.getEpicsSubtasksById(epic.getId()));
+        assertNull(manager.getEpicsSubtasksById(epic2.getId()));
+        assertTrue(manager.getHistory().isEmpty());
     }
 
 
@@ -287,6 +398,9 @@ class InMemoryTaskManagerTest {
     void updateEpic() {
         manager.createEpic(epic);
 
+        assertEquals(epic, manager.getEpicById(epic.getId()));
+        assertEquals(1, manager.getHistory().size());
+
         epic.setName("Updated model.Epic 1");
         epic.setDescription("Updated Description model.Epic 1");
         manager.updateEpic(epic);
@@ -294,6 +408,9 @@ class InMemoryTaskManagerTest {
         Epic updatedEpic = manager.getEpicById(1);
         assertEquals("Updated model.Epic 1", updatedEpic.getName());
         assertEquals("Updated Description model.Epic 1", updatedEpic.getDescription());
+
+        assertEquals(updatedEpic, manager.getEpicById(epic.getId()));
+        assertEquals(1, manager.getHistory().size());
 
         Epic epic2 = new Epic("New model.Epic Description", "New model.Epic Description");
         epic2.setId(2);
@@ -308,6 +425,13 @@ class InMemoryTaskManagerTest {
         manager.createEpic(epic);
         Subtask subtask = new Subtask("model.Subtask", "Description", TaskStatus.NEW, epic.getId());
         manager.createSubtask(subtask);
+
+        assertEquals(epic, manager.getEpicById(epic.getId()));
+        assertEquals(subtask, manager.getSubtaskById(subtask.getId()));
+        assertEquals(1, manager.getEpics().size());
+        assertEquals(1, manager.getSubtasks().size());
+        assertEquals(2, manager.getHistory().size());
+
         Epic epic2 = new Epic("model.Epic 2", "Description model.Epic 2");
         epic2.setId(3);
         manager.deleteEpicById(epic2.getId());
@@ -318,6 +442,8 @@ class InMemoryTaskManagerTest {
 
         assertFalse(manager.getSubtasks().contains(subtask));
         assertEquals(0, manager.getEpics().size());
+        assertEquals(0, manager.getSubtasks().size());
+        assertTrue(manager.getHistory().isEmpty());
     }
 
 
@@ -338,7 +464,7 @@ class InMemoryTaskManagerTest {
         assertEquals(2, subtasks.size());
         assertTrue(subtasks.contains(subtask1));
         assertTrue(subtasks.contains(subtask2));
-        assertEquals(TaskStatus.IN_PROGRESS, epic.getStatus());
+        assertEquals(TaskStatus.IN_PROGRESS, manager.getEpicById(epic.getId()).getStatus());
 
         Epic epic2 = new Epic("model.Epic 2", "Description model.Epic 2");
         epic2.setId(3);
@@ -381,7 +507,24 @@ class InMemoryTaskManagerTest {
         assertEquals(1, manager.getSubtasks().size());
         assertEquals("model.Subtask 2", manager.getSubtaskById(subtask1.getId()).getName());
         assertEquals("Description model.Subtask 2", manager.getSubtaskById(subtask1.getId()).getDescription());
-        assertEquals(TaskStatus.IN_PROGRESS, epic.getStatus());
+        assertEquals(TaskStatus.IN_PROGRESS, manager.getEpicById(epic.getId()).getStatus());
         assertEquals(TaskStatus.IN_PROGRESS, manager.getSubtaskById(subtask1.getId()).getStatus());
+    }
+
+    @Test
+    void testSubtaskDeletionRemovesItFromEpic() {
+        manager.createEpic(epic);
+
+        Subtask subtask1 = new Subtask("Subtask 1", "Description 1", TaskStatus.NEW, epic.getId());
+        manager.createSubtask(subtask1);
+        int subId = subtask1.getId();
+
+        assertEquals(manager.getEpicById(epic.getId()).getSubtasks().size(), 1);
+
+        manager.deleteSubtaskById(subId);
+
+        assertFalse(epic.getSubtasks().contains(subtask1));
+        assertEquals(0, epic.getSubtasks().size());
+        assertNull(manager.getSubtaskById(subtask1.getId()));
     }
 }

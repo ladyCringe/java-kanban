@@ -6,22 +6,13 @@
   <component name="ChangeListManager">
     <list default="true" id="398610fb-ce3c-4875-a383-31eda8ee1778" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Epic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Epic.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/HistoryManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/HistoryManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/InMemoryHistoryManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/InMemoryHistoryManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/InMemoryTaskManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/InMemoryTaskManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Managers.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/Managers.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Subtask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Subtask.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Task.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Task.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TaskManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/TaskManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TaskStatus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/TaskStatus.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/EpicTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/EpicTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Epic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Epic.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/service/HistoryManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/HistoryManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/service/InMemoryHistoryManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/InMemoryHistoryManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/service/InMemoryTaskManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/InMemoryTaskManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test/InMemoryHistoryManagerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/InMemoryHistoryManagerTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test/InMemoryTaskManagerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/InMemoryTaskManagerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/ManagersTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/ManagersTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/SubtaskTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/SubtaskTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/TaskTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/TaskTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,10 +29,10 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "customColor": "",
-  "associatedIndex": 5
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 5
+}</component>
   <component name="ProjectId" id="2sG2R3Isg1kioRLVg4mLkdFFe8M" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -51,7 +42,7 @@
   "keyToString": {
     "Application.Main.executor": "Run",
     "Downloaded.Files.Path.Enabled": "true",
-    "JUnit.All in java-kanban.executor": "Run",
+    "JUnit.All in java-kanban.executor": "Coverage",
     "JUnit.EpicTest.addSubtask.executor": "Run",
     "JUnit.EpicTest.deleteAllSubtasks.executor": "Run",
     "JUnit.EpicTest.executor": "Coverage",
@@ -59,16 +50,21 @@
     "JUnit.EpicTest.removeSubtask.executor": "Coverage",
     "JUnit.EpicTest.replaceSubtask.executor": "Coverage",
     "JUnit.EpicTest.testEpicCannotContainItself.executor": "Run",
-    "JUnit.InMemoryHistoryManagerTest.executor": "Coverage",
-    "JUnit.InMemoryHistoryManagerTest.testAddTaskToHistory.executor": "Coverage",
+    "JUnit.InMemoryHistoryManagerTest.executor": "Run",
+    "JUnit.InMemoryHistoryManagerTest.testAddTaskToHistory.executor": "Run",
     "JUnit.InMemoryHistoryManagerTest.testHistoryMaxSize.executor": "Run",
+    "JUnit.InMemoryHistoryManagerTest.testNoDuplicatesInHistory.executor": "Run",
     "JUnit.InMemoryHistoryManagerTest.testPreservePreviousTaskVersionInHistory.executor": "Coverage",
+    "JUnit.InMemoryHistoryManagerTest.testRemoveFromHistory.executor": "Run",
     "JUnit.InMemoryTaskManagerTest.deleteAllEpics.executor": "Coverage",
+    "JUnit.InMemoryTaskManagerTest.deleteAllEpicsHistory.executor": "Coverage",
     "JUnit.InMemoryTaskManagerTest.deleteAllSubtasks.executor": "Coverage",
-    "JUnit.InMemoryTaskManagerTest.deleteEpicById.executor": "Coverage",
-    "JUnit.InMemoryTaskManagerTest.deleteSubtaskById.executor": "Coverage",
-    "JUnit.InMemoryTaskManagerTest.deleteTaskById.executor": "Coverage",
-    "JUnit.InMemoryTaskManagerTest.executor": "Coverage",
+    "JUnit.InMemoryTaskManagerTest.deleteAllSubtasksHistory.executor": "Run",
+    "JUnit.InMemoryTaskManagerTest.deleteAllTasksHistory.executor": "Coverage",
+    "JUnit.InMemoryTaskManagerTest.deleteEpicById.executor": "Run",
+    "JUnit.InMemoryTaskManagerTest.deleteSubtaskById.executor": "Run",
+    "JUnit.InMemoryTaskManagerTest.deleteTaskById.executor": "Run",
+    "JUnit.InMemoryTaskManagerTest.executor": "Run",
     "JUnit.InMemoryTaskManagerTest.getEpicsSubtasksById.executor": "Run",
     "JUnit.InMemoryTaskManagerTest.getTasks.executor": "Run",
     "JUnit.InMemoryTaskManagerTest.noConflictBetweenTasksWithGeneratedAndGivenId.executor": "Run",
@@ -76,11 +72,14 @@
     "JUnit.InMemoryTaskManagerTest.testCreateAndGetTaskById.executor": "Coverage",
     "JUnit.InMemoryTaskManagerTest.testCreateEpic.executor": "Coverage",
     "JUnit.InMemoryTaskManagerTest.testCreateSubtask.executor": "Coverage",
+    "JUnit.InMemoryTaskManagerTest.testCreateTask.executor": "Run",
+    "JUnit.InMemoryTaskManagerTest.testEpicDoesNotContainInvalidSubtaskIds.executor": "Run",
     "JUnit.InMemoryTaskManagerTest.testGetSubtaskById.executor": "Coverage",
     "JUnit.InMemoryTaskManagerTest.testGetTaskById.executor": "Run",
+    "JUnit.InMemoryTaskManagerTest.testSubtaskDeletionRemovesItFromEpic.executor": "Run",
     "JUnit.InMemoryTaskManagerTest.testUpdateSubtask.executor": "Run",
-    "JUnit.InMemoryTaskManagerTest.updateEpic.executor": "Coverage",
-    "JUnit.InMemoryTaskManagerTest.updateTask.executor": "Run",
+    "JUnit.InMemoryTaskManagerTest.updateEpic.executor": "Run",
+    "JUnit.InMemoryTaskManagerTest.updateTask.executor": "Coverage",
     "JUnit.ManagersTest.testGetDefaultHistoryManager.executor": "Run",
     "JUnit.ManagersTest.testGetDefaultTaskManager.executor": "Run",
     "JUnit.SubtaskTest.executor": "Coverage",
@@ -107,7 +106,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "sprint__6-solution",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/user/Documents/prak/финальные задания/3/java-kanban",
     "node.js.detected.package.eslint": "true",
@@ -126,7 +125,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.All in java-kanban">
+  <component name="RunManager" selected="Application.Main">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="java-kanban" />
@@ -134,10 +133,11 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="All in java-kanban" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="InMemoryHistoryManagerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="java-kanban" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="TEST_OBJECT" value="package" />
+      <option name="MAIN_CLASS_NAME" value="InMemoryHistoryManagerTest" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -161,11 +161,11 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="SubtaskTest.testSubtaskCannotBeItsOwnEpic" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="InMemoryTaskManagerTest.testSubtaskDeletionRemovesItFromEpic" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="java-kanban" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="SubtaskTest" />
-      <option name="METHOD_NAME" value="testSubtaskCannotBeItsOwnEpic" />
+      <option name="MAIN_CLASS_NAME" value="InMemoryTaskManagerTest" />
+      <option name="METHOD_NAME" value="testSubtaskDeletionRemovesItFromEpic" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -173,10 +173,10 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.All in java-kanban" />
-        <item itemvalue="JUnit.InMemoryTaskManagerTest" />
         <item itemvalue="Application.Main" />
-        <item itemvalue="JUnit.SubtaskTest.testSubtaskCannotBeItsOwnEpic" />
+        <item itemvalue="JUnit.InMemoryHistoryManagerTest" />
+        <item itemvalue="JUnit.InMemoryTaskManagerTest" />
+        <item itemvalue="JUnit.InMemoryTaskManagerTest.testSubtaskDeletionRemovesItFromEpic" />
         <item itemvalue="JUnit.InMemoryTaskManagerTest.getEpicsSubtasksById" />
       </list>
     </recent_temporary>
@@ -197,7 +197,11 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1738067578901</updated>
-      <workItem from="1738067579901" duration="35175000" />
+      <workItem from="1738067579901" duration="38727000" />
+      <workItem from="1741187019849" duration="33000" />
+      <workItem from="1741855107915" duration="11572000" />
+      <workItem from="1741873582876" duration="5410000" />
+      <workItem from="1741883119808" duration="12747000" />
     </task>
     <servers />
   </component>
@@ -218,30 +222,34 @@
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/java_kanban$InMemoryHistoryManagerTest_testAddTaskToHistory.ic" NAME="InMemoryHistoryManagerTest.testAddTaskToHistory Coverage Results" MODIFIED="1738088050992" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
     <SUITE FILE_PATH="coverage/java_kanban$InMemoryTaskManagerTest_testCreateEpic.ic" NAME="InMemoryTaskManagerTest.testCreateEpic Coverage Results" MODIFIED="1738097382637" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
-    <SUITE FILE_PATH="coverage/java_kanban$InMemoryTaskManagerTest_updateTask.ic" NAME="InMemoryTaskManagerTest.updateTask Coverage Results" MODIFIED="1738100617786" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
+    <SUITE FILE_PATH="coverage/java_kanban$InMemoryTaskManagerTest_updateTask.ic" NAME="InMemoryTaskManagerTest.updateTask Coverage Results" MODIFIED="1741877449765" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
     <SUITE FILE_PATH="coverage/java_kanban$TaskTest_setName.ic" NAME="TaskTest.setName Coverage Results" MODIFIED="1738068862467" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
     <SUITE FILE_PATH="coverage/java_kanban$InMemoryHistoryManagerTest_testHistoryMaxSize.ic" NAME="InMemoryHistoryManagerTest.testHistoryMaxSize Coverage Results" MODIFIED="1738088057530" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
     <SUITE FILE_PATH="coverage/java_kanban$InMemoryTaskManagerTest_testGetSubtaskById.ic" NAME="InMemoryTaskManagerTest.testGetSubtaskById Coverage Results" MODIFIED="1738094958793" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
     <SUITE FILE_PATH="coverage/java_kanban$TaskTest_getName.ic" NAME="TaskTest.getName Coverage Results" MODIFIED="1738068287697" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
-    <SUITE FILE_PATH="coverage/java_kanban$All_in_java_kanban.ic" NAME="All in java-kanban Coverage Results" MODIFIED="1738101971189" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
+    <SUITE FILE_PATH="coverage/java_kanban$InMemoryTaskManagerTest_testSubtaskDeletionRemovesItFromEpic.ic" NAME="InMemoryTaskManagerTest.testSubtaskDeletionRemovesItFromEpic Coverage Results" MODIFIED="1741866212800" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
+    <SUITE FILE_PATH="coverage/java_kanban$All_in_java_kanban.ic" NAME="All in java-kanban Coverage Results" MODIFIED="1738159210687" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
     <SUITE FILE_PATH="coverage/java_kanban$InMemoryTaskManagerTest_updateEpic.ic" NAME="InMemoryTaskManagerTest.updateEpic Coverage Results" MODIFIED="1738099762350" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
     <SUITE FILE_PATH="coverage/java_kanban$EpicTest_removeSubtask.ic" NAME="EpicTest.removeSubtask Coverage Results" MODIFIED="1738077356785" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
     <SUITE FILE_PATH="coverage/java_kanban$SubtaskTest_testSubtaskCannotBeItsOwnEpic.ic" NAME="SubtaskTest.testSubtaskCannotBeItsOwnEpic Coverage Results" MODIFIED="1738104512907" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
-    <SUITE FILE_PATH="coverage/java_kanban$InMemoryTaskManagerTest_deleteSubtaskById.ic" NAME="InMemoryTaskManagerTest.deleteSubtaskById Coverage Results" MODIFIED="1738096882713" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
+    <SUITE FILE_PATH="coverage/java_kanban$InMemoryTaskManagerTest_deleteSubtaskById.ic" NAME="InMemoryTaskManagerTest.deleteSubtaskById Coverage Results" MODIFIED="1741887978825" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
     <SUITE FILE_PATH="coverage/java_kanban$EpicTest_replaceSubtask.ic" NAME="EpicTest.replaceSubtask Coverage Results" MODIFIED="1738084168955" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
     <SUITE FILE_PATH="coverage/java_kanban$InMemoryTaskManagerTest_deleteAllEpics.ic" NAME="InMemoryTaskManagerTest.deleteAllEpics Coverage Results" MODIFIED="1738097840035" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
     <SUITE FILE_PATH="coverage/java_kanban$InMemoryTaskManagerTest_getEpicsSubtasksById.ic" NAME="InMemoryTaskManagerTest.getEpicsSubtasksById Coverage Results" MODIFIED="1738100176552" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
+    <SUITE FILE_PATH="coverage/java_kanban$InMemoryTaskManagerTest_deleteAllEpicsHistory.ic" NAME="InMemoryTaskManagerTest.deleteAllEpicsHistory Coverage Results" MODIFIED="1741876315543" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
     <SUITE FILE_PATH="coverage/java_kanban$InMemoryTaskManagerTest_testCreatGetEpicById.ic" NAME="InMemoryTaskManagerTest.testCreatGetEpicById Coverage Results" MODIFIED="1738097600189" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
+    <SUITE FILE_PATH="coverage/java_kanban$InMemoryTaskManagerTest_deleteAllSubtasksHistory.ic" NAME="InMemoryTaskManagerTest.deleteAllSubtasksHistory Coverage Results" MODIFIED="1741875475821" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
     <SUITE FILE_PATH="coverage/java_kanban$EpicTest.ic" NAME="EpicTest Coverage Results" MODIFIED="1738102938838" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
     <SUITE FILE_PATH="coverage/java_kanban$InMemoryHistoryManagerTest_testPreservePreviousTaskVersionInHistory.ic" NAME="InMemoryHistoryManagerTest.testPreservePreviousTaskVersionInHistory Coverage Results" MODIFIED="1738089906253" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
     <SUITE FILE_PATH="coverage/java_kanban$TaskTest_getNameTest.ic" NAME="TaskTest.getNameTest Coverage Results" MODIFIED="1738070367615" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
     <SUITE FILE_PATH="coverage/java_kanban$InMemoryTaskManagerTest_deleteAllSubtasks.ic" NAME="InMemoryTaskManagerTest.deleteAllSubtasks Coverage Results" MODIFIED="1738096317131" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
-    <SUITE FILE_PATH="coverage/java_kanban$InMemoryHistoryManagerTest.ic" NAME="InMemoryHistoryManagerTest Coverage Results" MODIFIED="1738089929143" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
+    <SUITE FILE_PATH="coverage/java_kanban$InMemoryTaskManagerTest_deleteAllTasksHistory.ic" NAME="InMemoryTaskManagerTest.deleteAllTasksHistory Coverage Results" MODIFIED="1741875216899" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
     <SUITE FILE_PATH="coverage/java_kanban$InMemoryTaskManagerTest_deleteEpicById.ic" NAME="InMemoryTaskManagerTest.deleteEpicById Coverage Results" MODIFIED="1738098355357" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
+    <SUITE FILE_PATH="coverage/java_kanban$InMemoryHistoryManagerTest.ic" NAME="InMemoryHistoryManagerTest Coverage Results" MODIFIED="1741865879410" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
     <SUITE FILE_PATH="coverage/java_kanban$InMemoryTaskManagerTest_testUpdateSubtask.ic" NAME="InMemoryTaskManagerTest.testUpdateSubtask Coverage Results" MODIFIED="1738099672356" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
     <SUITE FILE_PATH="coverage/java_kanban$TaskTest_testEquals.ic" NAME="TaskTest.testEquals Coverage Results" MODIFIED="1738070797488" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
     <SUITE FILE_PATH="coverage/java_kanban$InMemoryTaskManagerTest_testCreateSubtask.ic" NAME="InMemoryTaskManagerTest.testCreateSubtask Coverage Results" MODIFIED="1738094684805" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
-    <SUITE FILE_PATH="coverage/java_kanban$InMemoryTaskManagerTest.ic" NAME="InMemoryTaskManagerTest Coverage Results" MODIFIED="1738095924910" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
+    <SUITE FILE_PATH="coverage/java_kanban$InMemoryTaskManagerTest.ic" NAME="InMemoryTaskManagerTest Coverage Results" MODIFIED="1741894953187" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
     <SUITE FILE_PATH="coverage/java_kanban$InMemoryTaskManagerTest_deleteTaskById.ic" NAME="InMemoryTaskManagerTest.deleteTaskById Coverage Results" MODIFIED="1738093108826" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
     <SUITE FILE_PATH="coverage/java_kanban$InMemoryTaskManagerTest_testCreateAndGetTaskById.ic" NAME="InMemoryTaskManagerTest.testCreateAndGetTaskById Coverage Results" MODIFIED="1738092065263" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
     <SUITE FILE_PATH="coverage/java_kanban$SubtaskTest.ic" NAME="SubtaskTest Coverage Results" MODIFIED="1738091481701" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />

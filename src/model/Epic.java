@@ -63,7 +63,7 @@ public class Epic extends Task {
         Epic newTask =  new Epic(getName(), getDescription());
         newTask.setId(getId());
         newTask.setStatus(getStatus());
-        newTask.getSubtasks().addAll(subtasks);
+        newTask.subtasks.addAll(subtasks);
         return newTask;
     }
 }
