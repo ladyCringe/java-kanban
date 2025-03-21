@@ -66,4 +66,12 @@ public class Epic extends Task {
         newTask.subtasks.addAll(subtasks);
         return newTask;
     }
+
+    public Epic cloneEpic() {
+        Epic newTask = new Epic(getName(), getDescription());
+        newTask.setId(getId());
+        newTask.setStatus(getStatus());
+        newTask.subtasks.addAll(subtasks);
+        return newTask;
+    }
 }

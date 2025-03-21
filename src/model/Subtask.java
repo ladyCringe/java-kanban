@@ -19,4 +19,10 @@ public class Subtask extends Task {
         newTask.setId(getId());
         return newTask;
     }
+
+    public Subtask cloneSubtask() {
+        Subtask newTask = new Subtask(getName(), getDescription(), getStatus(), epicId);
+        newTask.setId(getId());
+        return newTask;
+    }
 }

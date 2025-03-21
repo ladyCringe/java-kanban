@@ -124,7 +124,7 @@ public class InMemoryTaskManager implements TaskManager {
 
         historyManager.add(subtasks.get(id));
 
-        return (Subtask) subtasks.get(id).cloneTask();
+        return subtasks.get(id).cloneSubtask();
     }
 
     @Override
@@ -149,8 +149,8 @@ public class InMemoryTaskManager implements TaskManager {
 
         updateId();
         subtask.setId(id);
-        subtasks.put(id, (Subtask) subtask.cloneTask());
-        epics.get(subtask.getEpicId()).addSubtask((Subtask) subtask.cloneTask());
+        subtasks.put(id, subtask.cloneSubtask());
+        epics.get(subtask.getEpicId()).addSubtask(subtask.cloneSubtask());
         checkEpicStatus(subtask.getEpicId());
     }
 
@@ -171,9 +171,9 @@ public class InMemoryTaskManager implements TaskManager {
         }
 
         epics.get(subtask.getEpicId()).replaceSubtask(subtasks.get(subtask.getId()), subtask);
-        subtasks.put(subtask.getId(), (Subtask) subtask.cloneTask());
+        subtasks.put(subtask.getId(), subtask.cloneSubtask());
         checkEpicStatus(subtask.getEpicId());
-        historyManager.update(subtask.getId(), subtask.cloneTask());
+        historyManager.update(subtask.getId(), subtask.cloneSubtask());
     }
 
     @Override
@@ -187,7 +187,6 @@ public class InMemoryTaskManager implements TaskManager {
         epics.get(subtasks.get(id).getEpicId()).removeSubtask(subtasks.get(id));
         checkEpicStatus(subtasks.get(id).getEpicId());
         historyManager.remove(id);
-        subtasks.get(id).setId(null);
         subtasks.remove(id);
     }
 
@@ -206,7 +205,6 @@ public class InMemoryTaskManager implements TaskManager {
         }
 
         for (Epic epic : epics.values()) {
-            epic.deleteAllSubtasks();
             historyManager.remove(epic.getId());
         }
 
@@ -224,7 +222,7 @@ public class InMemoryTaskManager implements TaskManager {
 
         historyManager.add(epics.get(id));
 
-        return (Epic) epics.get(id).cloneTask();
+        return epics.get(id).cloneEpic();
     }
 
     @Override
@@ -237,7 +235,7 @@ public class InMemoryTaskManager implements TaskManager {
 
         updateId();
         epic.setId(id);
-        epics.put(id, (Epic) epic.cloneTask());
+        epics.put(id, epic.cloneEpic());
     }
 
     @Override
