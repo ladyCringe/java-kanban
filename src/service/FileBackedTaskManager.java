@@ -21,7 +21,7 @@ public class FileBackedTaskManager extends InMemoryTaskManager {
     //---------------------------------------------------
     // блок сериализации
     //---------------------------------------------------
-    void save() {
+    private void save() {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
             writer.write("id,type,name,status,description,epic");
             writer.newLine();
@@ -42,7 +42,7 @@ public class FileBackedTaskManager extends InMemoryTaskManager {
         }
     }
 
-    String toString(Task task) {
+    private String toString(Task task) {
         StringBuilder result = new StringBuilder();
         result.append(task.getId()).append(",");
         result.append(task.getType()).append(",");
@@ -62,6 +62,7 @@ public class FileBackedTaskManager extends InMemoryTaskManager {
     //---------------------------------------------------
     public static FileBackedTaskManager loadFromFile(File file) {
         FileBackedTaskManager result = new FileBackedTaskManager(file);
+        int idNext = 0;
 
         try {
             List<String> lines = Files.readAllLines(file.toPath());
@@ -69,23 +70,26 @@ public class FileBackedTaskManager extends InMemoryTaskManager {
                 if (!line.startsWith("id")) {
                     Task task = result.fromString(line);
                     if (task != null) {
+                        idNext = Math.max(idNext, task.getId());
+
                         if (task.getType().equals(TaskType.TASK)) {
-                            result.createTask(task);
+                            result.loadTask(task);
                         } else if (task.getType().equals(TaskType.EPIC)) {
-                            result.createEpic((Epic) task);
+                            result.loadEpic((Epic) task);
                         } else {
-                            result.createSubtask((Subtask) task);
+                            result.loadSubtask((Subtask) task);
                         }
                     }
                 }
             }
+            result.setId(idNext);
         } catch (IOException e) {
             throw new ManagerSaveException("Load file error: " + file.getName());
         }
         return result;
     }
 
-    Task fromString(String value) {
+    private Task fromString(String value) {
         String[] splitValue = value.split(",");
         int id = Integer.parseInt(splitValue[0]);
         TaskType type = TaskType.valueOf(splitValue[1]);

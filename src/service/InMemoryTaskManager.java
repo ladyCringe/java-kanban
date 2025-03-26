@@ -26,6 +26,10 @@ public class InMemoryTaskManager implements TaskManager {
         id++;
     }
 
+    protected void setId(int id) {
+        this.id = id;
+    }
+
     //---------------------------------------------------
     //блок методов для tasks
     //---------------------------------------------------
@@ -91,6 +95,10 @@ public class InMemoryTaskManager implements TaskManager {
 
         historyManager.remove(id);
         tasks.remove(id);
+    }
+
+    protected void loadTask(Task task) {
+        tasks.put(task.getId(), task);
     }
 
     //---------------------------------------------------
@@ -190,6 +198,16 @@ public class InMemoryTaskManager implements TaskManager {
         subtasks.remove(id);
     }
 
+    protected void loadSubtask(Subtask subtask) {
+        subtasks.put(subtask.getId(), subtask);
+        Epic epic = epics.get(subtask.getEpicId());
+
+        if (epic != null) {
+            epic.addSubtask(subtask);
+            checkEpicStatus(epic.getId());
+        }
+    }
+
     //---------------------------------------------------
     //блок методов для epics
     //---------------------------------------------------
@@ -266,6 +284,16 @@ public class InMemoryTaskManager implements TaskManager {
 
         historyManager.remove(id);
         epics.remove(id);
+    }
+
+    protected void loadEpic(Epic epic) {
+        epics.put(epic.getId(), epic);
+
+        for (Subtask subtask : subtasks.values()) {
+            if (subtask.getId().equals(epic.getId())) {
+                epics.get(epic.getId()).addSubtask(subtask);
+            }
+        }
     }
 
     @Override
