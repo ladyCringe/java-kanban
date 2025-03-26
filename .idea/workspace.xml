@@ -8,7 +8,7 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/model/Epic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Epic.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/model/Subtask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Subtask.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/service/InMemoryTaskManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/InMemoryTaskManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Task.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Task.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,6 +19,9 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="JUnit5 Test Class" />
+        <option value="Enum" />
+        <option value="Exception" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -36,6 +39,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Application.FileBackedTaskManager.executor": "Run",
     "Application.Main.executor": "Run",
     "Downloaded.Files.Path.Enabled": "true",
     "JUnit.All in java-kanban.executor": "Coverage",
@@ -46,6 +50,23 @@
     "JUnit.EpicTest.removeSubtask.executor": "Run",
     "JUnit.EpicTest.replaceSubtask.executor": "Coverage",
     "JUnit.EpicTest.testEpicCannotContainItself.executor": "Run",
+    "JUnit.FileBackedTaskManagerTest.deleteAllEpics.executor": "Run",
+    "JUnit.FileBackedTaskManagerTest.deleteAllSubtasks.executor": "Run",
+    "JUnit.FileBackedTaskManagerTest.deleteAllTasks.executor": "Coverage",
+    "JUnit.FileBackedTaskManagerTest.deleteSubtaskAndLoad.executor": "Run",
+    "JUnit.FileBackedTaskManagerTest.executor": "Coverage",
+    "JUnit.FileBackedTaskManagerTest.saveAndLoadMultipleSubtasks.executor": "Run",
+    "JUnit.FileBackedTaskManagerTest.saveAndLoadSingleSubtask.executor": "Run",
+    "JUnit.FileBackedTaskManagerTest.shouldReturnNullForUnknownTaskType.executor": "Run",
+    "JUnit.FileBackedTaskManagerTest.shouldSaveAndLoadEmptyFile.executor": "Run",
+    "JUnit.FileBackedTaskManagerTest.shouldSaveAndLoadMultipleTasks.executor": "Run",
+    "JUnit.FileBackedTaskManagerTest.shouldSaveAndLoadTasks.executor": "Run",
+    "JUnit.FileBackedTaskManagerTest.shouldThrowManagerSaveExceptionOnReadError.executor": "Run",
+    "JUnit.FileBackedTaskManagerTest.shouldThrowManagerSaveExceptionOnSave.executor": "Run",
+    "JUnit.FileBackedTaskManagerTest.testEpicWithNoSubtasks.executor": "Run",
+    "JUnit.FileBackedTaskManagerTest.testRemoveEpicAndSave.executor": "Run",
+    "JUnit.FileBackedTaskManagerTest.testRemoveTaskAndSave.executor": "Run",
+    "JUnit.FileBackedTaskManagerTest.updateTaskAndLoad.executor": "Run",
     "JUnit.InMemoryHistoryManagerTest.executor": "Run",
     "JUnit.InMemoryHistoryManagerTest.testAddTaskToHistory.executor": "Run",
     "JUnit.InMemoryHistoryManagerTest.testHistoryMaxSize.executor": "Run",
@@ -103,7 +124,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
-    "git-widget-placeholder": "sprint__6-solution",
+    "git-widget-placeholder": "sprint__7-solution-in-file-manager",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/user/Documents/prak/финальные задания/3/java-kanban",
     "node.js.detected.package.eslint": "true",
@@ -123,9 +144,15 @@
     </key>
   </component>
   <component name="RunManager" selected="JUnit.All in java-kanban">
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Main" />
+    <configuration name="FileBackedTaskManager" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="service.FileBackedTaskManager" />
       <module name="java-kanban" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -138,30 +165,31 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="EpicTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="FileBackedTaskManagerTest.shouldReturnNullForUnknownTaskType" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="java-kanban" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="EpicTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="EpicTest.removeSubtask" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="java-kanban" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="EpicTest" />
-      <option name="METHOD_NAME" value="removeSubtask" />
+      <option name="MAIN_CLASS_NAME" value="FileBackedTaskManagerTest" />
+      <option name="METHOD_NAME" value="shouldReturnNullForUnknownTaskType" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="EpicTest.replaceSubtask" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="FileBackedTaskManagerTest.shouldThrowManagerSaveExceptionOnReadError" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="java-kanban" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="EpicTest" />
-      <option name="METHOD_NAME" value="replaceSubtask" />
+      <option name="MAIN_CLASS_NAME" value="FileBackedTaskManagerTest" />
+      <option name="METHOD_NAME" value="shouldThrowManagerSaveExceptionOnReadError" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="FileBackedTaskManagerTest.shouldThrowManagerSaveExceptionOnSave" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="java-kanban" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="FileBackedTaskManagerTest" />
+      <option name="METHOD_NAME" value="shouldThrowManagerSaveExceptionOnSave" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -170,10 +198,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.All in java-kanban" />
-        <item itemvalue="Application.Main" />
-        <item itemvalue="JUnit.EpicTest.replaceSubtask" />
-        <item itemvalue="JUnit.EpicTest.removeSubtask" />
-        <item itemvalue="JUnit.EpicTest" />
+        <item itemvalue="JUnit.FileBackedTaskManagerTest.shouldThrowManagerSaveExceptionOnReadError" />
+        <item itemvalue="JUnit.FileBackedTaskManagerTest.shouldThrowManagerSaveExceptionOnSave" />
+        <item itemvalue="Application.FileBackedTaskManager" />
+        <item itemvalue="JUnit.FileBackedTaskManagerTest.shouldReturnNullForUnknownTaskType" />
       </list>
     </recent_temporary>
   </component>
@@ -198,7 +226,9 @@
       <workItem from="1741855107915" duration="11572000" />
       <workItem from="1741873582876" duration="5410000" />
       <workItem from="1741883119808" duration="14621000" />
-      <workItem from="1742546793569" duration="1112000" />
+      <workItem from="1742546793569" duration="2050000" />
+      <workItem from="1742895998232" duration="13244000" />
+      <workItem from="1742938439160" duration="11387000" />
     </task>
     <servers />
   </component>
@@ -215,6 +245,13 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="XDebuggerManager">
+    <pin-to-top-manager>
+      <pinned-members>
+        <PinnedItemInfo parentTag="FileBackedTaskManagerTest" memberName="file" />
+      </pinned-members>
+    </pin-to-top-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/java_kanban$InMemoryTaskManagerTest_testGetSubtaskById.ic" NAME="InMemoryTaskManagerTest.testGetSubtaskById Coverage Results" MODIFIED="1738094958793" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
@@ -235,11 +272,13 @@
     <SUITE FILE_PATH="coverage/java_kanban$InMemoryTaskManagerTest_deleteAllSubtasks.ic" NAME="InMemoryTaskManagerTest.deleteAllSubtasks Coverage Results" MODIFIED="1738096317131" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
     <SUITE FILE_PATH="coverage/java_kanban$InMemoryTaskManagerTest_deleteTaskById.ic" NAME="InMemoryTaskManagerTest.deleteTaskById Coverage Results" MODIFIED="1738093108826" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
     <SUITE FILE_PATH="coverage/java_kanban$TaskTest_setId.ic" NAME="TaskTest.setId Coverage Results" MODIFIED="1738070430025" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
-    <SUITE FILE_PATH="coverage/java_kanban$All_in_java_kanban.ic" NAME="All in java-kanban Coverage Results" MODIFIED="1742480381159" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
+    <SUITE FILE_PATH="coverage/java_kanban$All_in_java_kanban.ic" NAME="All in java-kanban Coverage Results" MODIFIED="1742992236569" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
     <SUITE FILE_PATH="coverage/java_kanban$InMemoryTaskManagerTest_testCreateEpic.ic" NAME="InMemoryTaskManagerTest.testCreateEpic Coverage Results" MODIFIED="1738097382637" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
     <SUITE FILE_PATH="coverage/java_kanban$EpicTest_removeSubtask.ic" NAME="EpicTest.removeSubtask Coverage Results" MODIFIED="1738077356785" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
     <SUITE FILE_PATH="coverage/java_kanban$SubtaskTest_testSubtaskEquality.ic" NAME="SubtaskTest.testSubtaskEquality Coverage Results" MODIFIED="1738073422175" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
     <SUITE FILE_PATH="coverage/java_kanban$InMemoryHistoryManagerTest_testAddTaskToHistory.ic" NAME="InMemoryHistoryManagerTest.testAddTaskToHistory Coverage Results" MODIFIED="1738088050992" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
+    <SUITE FILE_PATH="coverage/java_kanban$FileBackedTaskManagerTest.ic" NAME="FileBackedTaskManagerTest Coverage Results" MODIFIED="1742985771733" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
+    <SUITE FILE_PATH="coverage/java_kanban$FileBackedTaskManagerTest_deleteAllTasks.ic" NAME="FileBackedTaskManagerTest.deleteAllTasks Coverage Results" MODIFIED="1742986029543" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
     <SUITE FILE_PATH="coverage/java_kanban$TaskTest_getName.ic" NAME="TaskTest.getName Coverage Results" MODIFIED="1738068287697" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
     <SUITE FILE_PATH="coverage/java_kanban$SubtaskTest_testSubtaskCannotBeItsOwnEpic.ic" NAME="SubtaskTest.testSubtaskCannotBeItsOwnEpic Coverage Results" MODIFIED="1738104512907" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
     <SUITE FILE_PATH="coverage/java_kanban$InMemoryTaskManagerTest_testSubtaskDeletionRemovesItFromEpic.ic" NAME="InMemoryTaskManagerTest.testSubtaskDeletionRemovesItFromEpic Coverage Results" MODIFIED="1741866212800" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />

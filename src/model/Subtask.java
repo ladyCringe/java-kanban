@@ -1,5 +1,7 @@
 package model;
 
+import static model.TaskType.SUBTASK;
+
 public class Subtask extends Task {
 
     private final Integer epicId;
@@ -11,6 +13,10 @@ public class Subtask extends Task {
 
     public Integer getEpicId() {
         return epicId;
+    }
+
+    public TaskType getType() {
+        return SUBTASK;
     }
 
     @Override

@@ -2,6 +2,8 @@ package model;
 
 import java.util.Objects;
 
+import static model.TaskType.TASK;
+
 public class Task {
     private String name;
     private String description;
@@ -52,6 +54,10 @@ public class Task {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public TaskType getType() {
+        return TASK;
     }
 
     //---------------------------------------------------
