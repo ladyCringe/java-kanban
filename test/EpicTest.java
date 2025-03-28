@@ -33,10 +33,11 @@ class EpicTest {
     @Test
     void removeSubtask() {
         manager.createSubtask(subtask);
-        assertEquals(1, epic.getSubtasks().size());
+        assertEquals(1, manager.getEpicById(epic.getId()).getSubtasks().size());
 
         Subtask subtask1 = new Subtask("SubtaskName1",
                 "SubtaskDescription1", TaskStatus.DONE, epic.getId());
+        epic = manager.getEpicById(epic.getId());
         epic.removeSubtask(subtask1);
         assertEquals(1, epic.getSubtasks().size());
 
@@ -65,21 +66,22 @@ class EpicTest {
     @Test
     void replaceSubtask() {
         manager.createSubtask(subtask);
-        int index = epic.getSubtasks().indexOf(subtask);
+        int index = manager.getEpicById(epic.getId()).getSubtasks().indexOf(subtask);
         Subtask subtask1 = new Subtask("SubtaskName1",
                 "SubtaskDescription1", TaskStatus.DONE, epic.getId());
         subtask1.setId(subtask.getId());
 
         epic.replaceSubtask(subtask, subtask1);
-        assertEquals(subtask1, epic.getSubtasks().get(index));
+        assertEquals(subtask1, manager.getEpicById(epic.getId()).getSubtasks().get(index));
 
         Epic newEpic = new Epic("testName", "testDescription");
         manager.createEpic(newEpic);
         Subtask subtask2 = new Subtask("SubtaskName2",
                 "SubtaskDescription2", TaskStatus.DONE, newEpic.getId());
         manager.createSubtask(subtask2);
+        epic = manager.getEpicById(epic.getId());
         epic.replaceSubtask(subtask1, subtask2);
-        assertNotEquals(subtask2, epic.getSubtasks().get(index));
+        assertNotEquals(subtask2, manager.getEpicById(epic.getId()).getSubtasks().get(index));
 
         epic.replaceSubtask(subtask2, subtask1);
         assertNotEquals(subtask2, epic.getSubtasks().get(index));

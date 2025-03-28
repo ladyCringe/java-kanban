@@ -2,6 +2,8 @@ package model;
 
 import java.util.Objects;
 
+import static model.TaskType.TASK;
+
 public class Task {
     private String name;
     private String description;
@@ -54,11 +56,15 @@ public class Task {
         this.id = id;
     }
 
+    public TaskType getType() {
+        return TASK;
+    }
+
     //---------------------------------------------------
     //создание копии
     //---------------------------------------------------
     public Task cloneTask() {
-        Task newTask =  new Task(name, description, status);
+        Task newTask = new Task(name, description, status);
         newTask.setId(id);
         return newTask;
     }

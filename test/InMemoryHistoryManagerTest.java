@@ -19,6 +19,7 @@ class InMemoryHistoryManagerTest {
     @Test
     void testAddTaskToHistory() {
         Task task1 = new Task( "model.Task 1", "Description 1", TaskStatus.NEW);
+        task1.setId(1);
         historyManager.add(task1);
 
         assertEquals(1, historyManager.getHistory().size());
@@ -26,26 +27,54 @@ class InMemoryHistoryManagerTest {
     }
 
     @Test
-    void testHistoryMaxSize() {
-        for (int i = 0; i <= 12; i++) {
-            historyManager.add(new Task("model.Task " + i, "Description " + i, TaskStatus.NEW));
-        }
+    void testNoDuplicatesInHistory() {
+        Task task1 = new Task("Task 1", "Description 1", TaskStatus.NEW);
+        historyManager.add(task1);
+        assertEquals(0, historyManager.getHistory().size());
 
-        assertEquals(10, historyManager.getHistory().size());
-        assertEquals("model.Task 3", historyManager.getHistory().getFirst().getName());
+        task1.setId(1);
+        historyManager.add(task1);
+        historyManager.add(task1);
+
+        assertEquals(1, historyManager.getHistory().size());
+        assertEquals(task1, historyManager.getHistory().getFirst());
     }
 
     @Test
-    void testPreservePreviousTaskVersionInHistory() {
-        Task task = new Task("model.Task 1", "Description 1", TaskStatus.NEW);
-        historyManager.add(task);
+    void testRemoveFromHistory() {
+        Task task1 = new Task("Task 1", "Description 1", TaskStatus.NEW);
+        task1.setId(1);
+        Task task2 = new Task("Task 2", "Description 2", TaskStatus.IN_PROGRESS);
+        task2.setId(2);
+        Task task3 = new Task("Task 3", "Description 3", TaskStatus.IN_PROGRESS);
+        task3.setId(3);
+        historyManager.add(task1);
+        historyManager.add(task2);
+        historyManager.add(task3);
 
-        task.setName("Updated model.Task 1");
-        task.setDescription("Updated Description 1");
-        historyManager.add(task);
+        assertEquals(3, historyManager.getHistory().size());
+        assertEquals(task1, historyManager.getHistory().getFirst());
+        assertEquals(task3, historyManager.getHistory().getLast());
+
+        Task task4 = new Task("Task 4", "Description 4", TaskStatus.IN_PROGRESS);
+        task4.setId(4);
+
+        historyManager.remove(task4.getId());
+
+        assertEquals(3, historyManager.getHistory().size());
+        assertEquals(task1, historyManager.getHistory().getFirst());
+        assertEquals(task3, historyManager.getHistory().getLast());
+
+        historyManager.remove(task3.getId());
 
         assertEquals(2, historyManager.getHistory().size());
-        assertEquals("model.Task 1", historyManager.getHistory().get(0).getName());
-        assertEquals("Updated model.Task 1", historyManager.getHistory().get(1).getName());
+        assertEquals(task1, historyManager.getHistory().getFirst());
+        assertEquals(task2, historyManager.getHistory().getLast());
+
+        historyManager.remove(task1.getId());
+
+        assertEquals(1, historyManager.getHistory().size());
+        assertEquals(task2, historyManager.getHistory().getFirst());
+        assertEquals(task2, historyManager.getHistory().getLast());
     }
 }

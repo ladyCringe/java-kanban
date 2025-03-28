@@ -2,6 +2,8 @@ package model;
 
 import java.util.ArrayList;
 
+import static model.TaskType.EPIC;
+
 public class Epic extends Task {
 
     private final ArrayList<Subtask> subtasks;
@@ -9,6 +11,10 @@ public class Epic extends Task {
     public Epic(String name, String description) {
         super(name, description, TaskStatus.NEW);
         this.subtasks = new ArrayList<>();
+    }
+
+    public TaskType getType() {
+        return EPIC;
     }
 
     public void addSubtask(Subtask subtask) {
@@ -59,11 +65,19 @@ public class Epic extends Task {
     }
 
     @Override
-    public Task cloneTask(){
-        Epic newTask =  new Epic(getName(), getDescription());
+    public Task cloneTask() {
+        Epic newTask = new Epic(getName(), getDescription());
         newTask.setId(getId());
         newTask.setStatus(getStatus());
-        newTask.getSubtasks().addAll(subtasks);
+        newTask.subtasks.addAll(subtasks);
+        return newTask;
+    }
+
+    public Epic cloneEpic() {
+        Epic newTask = new Epic(getName(), getDescription());
+        newTask.setId(getId());
+        newTask.setStatus(getStatus());
+        newTask.subtasks.addAll(subtasks);
         return newTask;
     }
 }

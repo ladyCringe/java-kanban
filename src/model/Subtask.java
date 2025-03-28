@@ -1,5 +1,7 @@
 package model;
 
+import static model.TaskType.SUBTASK;
+
 public class Subtask extends Task {
 
     private final Integer epicId;
@@ -13,9 +15,19 @@ public class Subtask extends Task {
         return epicId;
     }
 
+    public TaskType getType() {
+        return SUBTASK;
+    }
+
     @Override
     public Task cloneTask() {
-        Subtask newTask =  new Subtask(getName(), getDescription(), getStatus(), epicId);
+        Subtask newTask = new Subtask(getName(), getDescription(), getStatus(), epicId);
+        newTask.setId(getId());
+        return newTask;
+    }
+
+    public Subtask cloneSubtask() {
+        Subtask newTask = new Subtask(getName(), getDescription(), getStatus(), epicId);
         newTask.setId(getId());
         return newTask;
     }
