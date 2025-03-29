@@ -8,6 +8,8 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.time.Duration;
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class FileBackedTaskManager extends InMemoryTaskManager {
@@ -23,7 +25,7 @@ public class FileBackedTaskManager extends InMemoryTaskManager {
     //---------------------------------------------------
     private void save() {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
-            writer.write("id,type,name,status,description,epic");
+            writer.write("id,type,name,status,description,startTime,duration,epic");
             writer.newLine();
             for (Task task : this.getTasks()) {
                 writer.write(toString(task));
@@ -48,7 +50,9 @@ public class FileBackedTaskManager extends InMemoryTaskManager {
         result.append(task.getType()).append(",");
         result.append(task.getName()).append(",");
         result.append(task.getStatus()).append(",");
-        result.append(task.getDescription());
+        result.append(task.getDescription()).append(",");
+        result.append(task.getStartTime() != null ? task.getStartTime() : "null").append(",");
+        result.append(task.getDuration() != null ? task.getDuration().toMinutes() : "null");
 
         if (task.getType().equals(TaskType.SUBTASK)) {
             result.append(",").append(((Subtask) task).getEpicId());
@@ -96,10 +100,12 @@ public class FileBackedTaskManager extends InMemoryTaskManager {
         String name = splitValue[2];
         TaskStatus status = TaskStatus.valueOf(splitValue[3]);
         String description = splitValue[4];
+        LocalDateTime startTime = splitValue[5].equals("null") ? null : LocalDateTime.parse(splitValue[5]);
+        Duration duration = splitValue[6].equals("null") ? null : Duration.ofMinutes(Long.parseLong(splitValue[6]));
 
         switch (type) {
             case TASK:
-                Task task = new Task(name, description, status);
+                Task task = new Task(name, description, status, startTime, duration);
                 task.setId(id);
                 return task;
             case EPIC:
@@ -108,8 +114,8 @@ public class FileBackedTaskManager extends InMemoryTaskManager {
                 epic.setStatus(status);
                 return epic;
             case SUBTASK:
-                int epicId = Integer.parseInt(splitValue[5]);
-                Subtask subtask = new Subtask(name, description, status, epicId);
+                int epicId = Integer.parseInt(splitValue[7]);
+                Subtask subtask = new Subtask(name, description, status, startTime, duration, epicId);
                 subtask.setId(id);
                 return subtask;
             default:

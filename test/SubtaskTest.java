@@ -49,8 +49,8 @@ class SubtaskTest {
         epic2.addSubtask(subtask2);
 
         assertNotEquals(subtask, subtask3);
-        assertNotEquals(subtask,null);
-        assertNotEquals(subtask,epic);
+        assertNotEquals(subtask, null);
+        assertNotEquals(subtask, epic);
     }
 
     @Test
