@@ -46,8 +46,10 @@ public class InMemoryTaskManager implements TaskManager {
 
     @Override
     public void deleteAllTasks() {
-        tasks.values().forEach(t -> historyManager.remove(t.getId()));
-        prioritizedTasks.removeAll(tasks.values());
+        tasks.values().forEach(t -> {
+            historyManager.remove(t.getId());
+            prioritizedTasks.remove(t);
+        });
         tasks.clear();
     }
 
@@ -94,17 +96,12 @@ public class InMemoryTaskManager implements TaskManager {
             return;
         }
 
-        if (task.getStartTime() == null && tasks.get(task.getId()).getStartTime() != null) {
-            task.setStartTime(tasks.get(task.getId()).getStartTime());
-        }
-        if (task.getDuration() == null && tasks.get(task.getId()).getDuration() != null) {
-            task.setDuration(tasks.get(task.getId()).getDuration());
-        }
         if (hasIntersections(task)) {
             throw new IllegalArgumentException("Task intersects with existing task: "
                     + "method updateTask in service.InMemoryTaskManager");
         }
 
+        prioritizedTasks.remove(tasks.get(task.getId()));
         tasks.put(task.getId(), task.cloneTask());
         historyManager.update(task.getId(), task.cloneTask());
         if (task.getStartTime() != null) {
@@ -148,14 +145,15 @@ public class InMemoryTaskManager implements TaskManager {
     @Override
     public void deleteAllSubtasks() {
         subtasks.values().forEach(s -> historyManager.remove(s.getId()));
-        subtasks.clear();
 
         epics.values().forEach(epic -> {
             epic.deleteAllSubtasks();
             checkEpicStatus(epic.getId());
+            checkEpicTime(epic.getId());
         });
 
         prioritizedTasks.removeAll(subtasks.values());
+        subtasks.clear();
     }
 
     @Override
@@ -207,9 +205,6 @@ public class InMemoryTaskManager implements TaskManager {
         if (subtask.getStartTime() != null) {
             prioritizedTasks.add(subtasks.get(subtask.getId()));
         }
-        if (epics.get(subtask.getEpicId()).getStartTime() != null) {
-            prioritizedTasks.add(epics.get(subtask.getEpicId()));
-        }
     }
 
     @Override
@@ -228,17 +223,12 @@ public class InMemoryTaskManager implements TaskManager {
             return;
         }
 
-        if (subtask.getStartTime() == null && subtasks.get(subtask.getId()).getStartTime() != null) {
-            subtask.setStartTime(subtasks.get(subtask.getId()).getStartTime());
-        }
-        if (subtask.getDuration() == null && subtasks.get(subtask.getId()).getDuration() != null) {
-            subtask.setDuration(subtasks.get(subtask.getId()).getDuration());
-        }
         if (hasIntersections(subtask)) {
             throw new IllegalArgumentException("Subtask intersects with existing task: "
                     + "method updateSubtask in service.InMemoryTaskManager");
         }
 
+        prioritizedTasks.remove(subtasks.get(subtask.getId()));
         epics.get(subtask.getEpicId()).replaceSubtask(subtasks.get(subtask.getId()), subtask);
         subtasks.put(subtask.getId(), subtask.cloneSubtask());
         checkEpicStatus(subtask.getEpicId());
@@ -287,7 +277,6 @@ public class InMemoryTaskManager implements TaskManager {
 
         if (subtask.getStartTime() != null) {
             prioritizedTasks.add(subtasks.get(subtask.getId()));
-            prioritizedTasks.add(epics.get(subtask.getEpicId()));
         }
 
         if (epic != null) {
@@ -308,7 +297,6 @@ public class InMemoryTaskManager implements TaskManager {
     public void deleteAllEpics() {
         subtasks.values().forEach(sub -> historyManager.remove(sub.getId()));
         epics.values().forEach(epic -> historyManager.remove(epic.getId()));
-        prioritizedTasks.removeAll(epics.values());
         prioritizedTasks.removeAll(subtasks.values());
         subtasks.clear();
         epics.clear();
@@ -334,10 +322,6 @@ public class InMemoryTaskManager implements TaskManager {
             System.out.println("method createEpic in service.InMemoryTaskManager");
             return;
         }
-        if (hasIntersections(epic)) {
-            throw new IllegalArgumentException("Epic intersects with existing task: "
-                    + "method createEpic in service.InMemoryTaskManager");
-        }
 
         updateId();
         epic.setId(id);
@@ -355,9 +339,6 @@ public class InMemoryTaskManager implements TaskManager {
         epics.get(epic.getId()).setDescription(epic.getDescription());
         epics.get(epic.getId()).setName(epic.getName());
         historyManager.update(epic.getId(), epic.cloneTask());
-        if (epics.get(epic.getId()).getStartTime() != null) {
-            prioritizedTasks.add(epics.get(epic.getId()));
-        }
     }
 
     @Override
@@ -374,7 +355,6 @@ public class InMemoryTaskManager implements TaskManager {
             prioritizedTasks.remove(subtask);
         });
 
-        prioritizedTasks.remove(epics.get(id));
         historyManager.remove(id);
         epics.remove(id);
     }
@@ -389,10 +369,6 @@ public class InMemoryTaskManager implements TaskManager {
         if (hasIntersections(epic)) {
             throw new IllegalArgumentException("Task intersects with existing task: "
                     + "method loadEpic in service.InMemoryTaskManager");
-        }
-
-        if (epic.getStartTime() != null) {
-            prioritizedTasks.add(epics.get(epic.getId()));
         }
     }
 
@@ -453,14 +429,14 @@ public class InMemoryTaskManager implements TaskManager {
         }
 
         epics.get(id).setStartTime(getSubtasks().stream()
-                .filter(subtask -> subtask.getStartTime() != null)
-                .map(Task::getStartTime)
+                .map(Subtask::getStartTime)
+                .filter(Objects::nonNull)
                 .min(Comparator.naturalOrder())
                 .orElse(null));
 
         epics.get(id).setDuration(getSubtasks().stream()
-                .filter(subtask -> subtask.getDuration() != null)
-                .map(Task::getDuration)
+                .map(Subtask::getDuration)
+                .filter(Objects::nonNull)
                 .reduce(Duration.ZERO, Duration::plus));
 
         if (epics.get(id).getStartTime() == null) {

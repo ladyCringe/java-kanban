@@ -312,17 +312,15 @@ public class FileBackedTaskManagerTest extends TaskManagerTest<FileBackedTaskMan
 
         assertEquals(subtask, manager.getSubtaskById(2));
         assertEquals(1, manager.getEpicsSubtasksById(epic.getId()).size());
-        assertEquals(2, manager.getPrioritizedTasks().size());
-        assertEquals(epic, manager.getPrioritizedTasks().getFirst());
-        assertEquals(subtask, manager.getPrioritizedTasks().getLast());
+        assertEquals(1, manager.getPrioritizedTasks().size());
+        assertEquals(subtask, manager.getPrioritizedTasks().getFirst());
 
         FileBackedTaskManager loaded = FileBackedTaskManager.loadFromFile(file);
 
         assertEquals(subtask, loaded.getSubtaskById(2));
         assertEquals(1, loaded.getEpicsSubtasksById(epic.getId()).size());
-        assertEquals(2, loaded.getPrioritizedTasks().size());
-        assertEquals(epic, loaded.getPrioritizedTasks().getFirst());
-        assertEquals(subtask, loaded.getPrioritizedTasks().getLast());
+        assertEquals(1, loaded.getPrioritizedTasks().size());
+        assertEquals(subtask, loaded.getPrioritizedTasks().getFirst());
     }
 
     @Test
@@ -505,8 +503,7 @@ public class FileBackedTaskManagerTest extends TaskManagerTest<FileBackedTaskMan
 
         assertEquals(1, loaded.getEpicById(1).getSubtasks().size());
         assertEquals(sub, loaded.getEpicById(1).getSubtasks().getFirst());
-        assertEquals(2, loaded.getPrioritizedTasks().size());
-        assertEquals(epic, loaded.getPrioritizedTasks().getFirst());
+        assertEquals(1, loaded.getPrioritizedTasks().size());
         assertEquals(sub, loaded.getPrioritizedTasks().getLast());
     }
 
@@ -523,6 +520,6 @@ public class FileBackedTaskManagerTest extends TaskManagerTest<FileBackedTaskMan
 
         FileBackedTaskManager loaded = FileBackedTaskManager.loadFromFile(file);
 
-        assertTrue(loaded.getPrioritizedTasks().contains(epic));
+        assertFalse(loaded.getPrioritizedTasks().contains(epic));
     }
 }

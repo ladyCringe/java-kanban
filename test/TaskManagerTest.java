@@ -224,10 +224,8 @@ public abstract class TaskManagerTest<T extends TaskManager> {
         manager.updateTask(task);
         Task updated1 = manager.getTaskById(task.getId());
 
-        assertNotNull(updated1.getStartTime());
-        assertNotNull(updated1.getDuration());
-        assertEquals(LocalDateTime.of(2023, 1, 1, 12, 0), updated.getStartTime());
-        assertEquals(Duration.ofMinutes(30), updated.getDuration());
+        assertNull(updated1.getStartTime());
+        assertNull(updated1.getDuration());
     }
 
     @Test
@@ -349,7 +347,7 @@ public abstract class TaskManagerTest<T extends TaskManager> {
     @Test
     void сreateSubtaskWithoutEpic() {
         Epic fakeEpic = new Epic("Fake", "No such epic");
-        fakeEpic.setId(999); // Эпика с таким id не существует в менеджере
+        fakeEpic.setId(999);
 
         Subtask subtask = new Subtask("Orphan", "Has no parent",
                 TaskStatus.NEW, fakeEpic.getId());
@@ -466,10 +464,8 @@ public abstract class TaskManagerTest<T extends TaskManager> {
 
         Subtask updated2 = manager.getSubtaskById(subtask.getId());
 
-        assertNotNull(updated2.getStartTime());
-        assertNotNull(updated2.getDuration());
-        assertEquals(updated.getStartTime(), updated2.getStartTime());
-        assertEquals(updated.getDuration(), updated2.getDuration());
+        assertNull(updated2.getStartTime());
+        assertNull(updated2.getDuration());
     }
 
     @Test
@@ -621,14 +617,11 @@ public abstract class TaskManagerTest<T extends TaskManager> {
         manager.createTask(existing);
 
         Epic intersectingEpic = new Epic("Epic1", "Desc");
+        manager.createEpic(intersectingEpic);
         Subtask fakeSub = new Subtask("Sub", "desc", TaskStatus.NEW,
                 LocalDateTime.of(2023, 3, 1, 10, 30),
-                Duration.ofMinutes(30), 999);
-
-        intersectingEpic.setId(2);
-        intersectingEpic.addSubtask(fakeSub);
-
-        assertThrows(IllegalArgumentException.class, () -> manager.createEpic(intersectingEpic));
+                Duration.ofMinutes(30), intersectingEpic.getId());
+        assertThrows(IllegalArgumentException.class, () -> manager.createSubtask(fakeSub));
     }
 
     @Test
@@ -761,5 +754,47 @@ public abstract class TaskManagerTest<T extends TaskManager> {
         assertFalse(epic.getSubtasks().contains(subtask1));
         assertEquals(0, epic.getSubtasks().size());
         assertNull(manager.getSubtaskById(subtask1.getId()));
+    }
+
+    @Test
+    void getDurationWithSubtasks() {
+        manager.createEpic(epic);
+
+        Subtask sub1 = new Subtask("Sub1", "Desc1", TaskStatus.NEW,
+                LocalDateTime.of(2024, 1, 1, 10, 0),
+                Duration.ofMinutes(30), epic.getId());
+        Subtask sub2 = new Subtask("Sub2", "Desc2", TaskStatus.NEW,
+                LocalDateTime.of(2024, 1, 1, 11, 0),
+                Duration.ofMinutes(90), epic.getId());
+        manager.createSubtask(sub1);
+        manager.createSubtask(sub2);
+
+        Duration expected = Duration.ofMinutes(120);
+        assertEquals(expected, manager.getEpicById(epic.getId()).getDuration());
+    }
+
+    @Test
+    void getEndTimeWithSubtasks() {
+        manager.createEpic(epic);
+
+        Subtask sub1 = new Subtask("Sub 1", "Desc 1", TaskStatus.NEW,
+                LocalDateTime.of(2024, 3, 30, 10, 0),
+                Duration.ofMinutes(30), epic.getId());
+        Subtask sub2 = new Subtask("Sub 2", "Desc 2", TaskStatus.DONE,
+                LocalDateTime.of(2024, 3, 30, 12, 0),
+                Duration.ofMinutes(45), epic.getId());
+        Subtask sub3 = new Subtask("Sub 3", "Desc 3", TaskStatus.DONE,
+                LocalDateTime.of(2024, 3, 30, 9, 0),
+                Duration.ofMinutes(15), epic.getId());
+        manager.createSubtask(sub1);
+        manager.createSubtask(sub2);
+        manager.createSubtask(sub3);
+
+        LocalDateTime expectedEnd = sub2.getStartTime().plus(sub2.getDuration());
+        LocalDateTime expectedStart = sub3.getStartTime();
+
+        assertEquals(3, manager.getEpicById(epic.getId()).getSubtasks().size());
+        assertEquals(expectedEnd, manager.getEpicById(epic.getId()).getEndTime());
+        assertEquals(expectedStart, manager.getEpicById(epic.getId()).getStartTime());
     }
 }

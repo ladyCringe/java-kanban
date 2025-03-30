@@ -1,6 +1,5 @@
 package model;
 
-import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Objects;
@@ -10,7 +9,7 @@ import static model.TaskType.EPIC;
 public class Epic extends Task {
 
     private final ArrayList<Subtask> subtasks;
-    LocalDateTime endTime;
+    private LocalDateTime endTime;
 
     //---------------------------------------------------
     //конструктор
@@ -25,23 +24,6 @@ public class Epic extends Task {
     //---------------------------------------------------
     public TaskType getType() {
         return EPIC;
-    }
-
-    @Override
-    public Duration getDuration() {
-        return getSubtasks().stream()
-                .map(Subtask::getDuration)
-                .filter(Objects::nonNull)
-                .reduce(Duration.ZERO, Duration::plus);
-    }
-
-    @Override
-    public LocalDateTime getStartTime() {
-        return getSubtasks().stream()
-                .map(Subtask::getStartTime)
-                .filter(Objects::nonNull)
-                .min(LocalDateTime::compareTo)
-                .orElse(null);
     }
 
     @Override
@@ -68,14 +50,8 @@ public class Epic extends Task {
             System.out.println("method addSubtask in model.Epic");
             return;
         }
-        if (getStartTime() == null) {
-            this.setStartTime(subtask.getStartTime());
-        }
-        subtasks.add(subtask);
 
-        if (subtask.getDuration() != null) {
-            setDuration(getDuration().plus(subtask.getDuration()));
-        }
+        subtasks.add(subtask);
 
         setEndTime(getSubtasks().stream()
                 .map(Subtask::getEndTime)
@@ -124,6 +100,9 @@ public class Epic extends Task {
         Epic newTask = new Epic(getName(), getDescription());
         newTask.setId(getId());
         newTask.setStatus(getStatus());
+        newTask.setDuration(getDuration());
+        newTask.setStartTime(getStartTime());
+        newTask.setEndTime(getEndTime());
         newTask.subtasks.addAll(subtasks);
         return newTask;
     }
@@ -132,6 +111,9 @@ public class Epic extends Task {
         Epic newTask = new Epic(getName(), getDescription());
         newTask.setId(getId());
         newTask.setStatus(getStatus());
+        newTask.setDuration(getDuration());
+        newTask.setStartTime(getStartTime());
+        newTask.setEndTime(getEndTime());
         newTask.subtasks.addAll(subtasks);
         return newTask;
     }

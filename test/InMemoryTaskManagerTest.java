@@ -40,8 +40,7 @@ class InMemoryTaskManagerTest extends TaskManagerTest<InMemoryTaskManager> {
                 epic.getId());
         manager.createSubtask(sub);
 
-        assertEquals(2, manager.getPrioritizedTasks().size());
-        assertEquals(epic, manager.getPrioritizedTasks().getFirst());
+        assertEquals(1, manager.getPrioritizedTasks().size());
         assertEquals(sub, manager.getPrioritizedTasks().getLast());
     }
 
@@ -60,8 +59,7 @@ class InMemoryTaskManagerTest extends TaskManagerTest<InMemoryTaskManager> {
         assertNotNull(manager.getEpicById(epic.getId()).getStartTime());
         manager.updateEpic(epic);
 
-        assertEquals(2, manager.getPrioritizedTasks().size());
-        assertEquals(epic, manager.getPrioritizedTasks().getFirst());
+        assertEquals(1, manager.getPrioritizedTasks().size());
         assertEquals(subtask, manager.getPrioritizedTasks().getLast());
     }
 
