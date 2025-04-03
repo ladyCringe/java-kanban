@@ -3,24 +3,30 @@ import model.Epic;
 import model.Subtask;
 import model.Task;
 import model.TaskStatus;
-import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import service.FileBackedTaskManager;
 
+import java.io.BufferedWriter;
 import java.io.File;
-import java.io.IOException;
+import java.io.FileWriter;
+import java.time.Duration;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class FileBackedTaskManagerTest {
-    FileBackedTaskManager manager;
-    File file;
+public class FileBackedTaskManagerTest extends TaskManagerTest<FileBackedTaskManager> {
 
-    @BeforeEach
-    void setup() throws IOException {
-        file = File.createTempFile("test", ".csv");
-        manager = new FileBackedTaskManager(file);
+    private File file;
+
+    @Override
+    protected FileBackedTaskManager createManager() {
+        Assertions.assertDoesNotThrow(() -> {
+            file = File.createTempFile("test", ".csv");
+        });
+
+        return new FileBackedTaskManager(file);
     }
 
     //---------------------------------------------------
@@ -103,6 +109,32 @@ public class FileBackedTaskManagerTest {
         List<Task> loadedTasks = loaded.getTasks();
 
         assertTrue(loadedTasks.isEmpty());
+    }
+
+    @Test
+    void loadTaskIntersects() {
+        Assertions.assertDoesNotThrow(() -> {
+            BufferedWriter writer = new BufferedWriter(new FileWriter(file));
+            writer.append("1,TASK,Task 1,NEW,first,2023-01-01T10:00,60").append("\n");
+            writer.append("2,TASK,Task 2,NEW,Conflict,2023-01-01T10:30,45");
+            writer.close();
+        });
+
+        assertThrows(IllegalArgumentException.class, () -> FileBackedTaskManager.loadFromFile(file));
+    }
+
+    @Test
+    void loadTaskPrioritized() {
+        Task task = new Task("Scheduled Task", "Desc", TaskStatus.NEW,
+                LocalDateTime.of(2023, 1, 2, 14, 0), Duration.ofMinutes(45));
+        task.setId(1);
+
+        manager.createTask(task);
+        FileBackedTaskManager loaded = FileBackedTaskManager.loadFromFile(file);
+        loaded.createTask(task);
+
+        assertEquals(1, loaded.getPrioritizedTasks().size());
+        assertEquals(task, loaded.getPrioritizedTasks().getFirst());
     }
 
     //---------------------------------------------------
@@ -223,7 +255,7 @@ public class FileBackedTaskManagerTest {
         FileBackedTaskManager loadedManager = FileBackedTaskManager.loadFromFile(file);
         assertNull(loadedManager.getSubtaskById(subtask.getId()));
         assertEquals(0, loadedManager.getSubtasks().size());
-        assertEquals(0,manager.getEpicById(epic.getId()).getSubtasks().size());
+        assertEquals(0, manager.getEpicById(epic.getId()).getSubtasks().size());
     }
 
     @Test
@@ -245,8 +277,79 @@ public class FileBackedTaskManagerTest {
 
         FileBackedTaskManager loaded = FileBackedTaskManager.loadFromFile(file);
         assertTrue(loaded.getSubtasks().isEmpty());
-        assertEquals(1,manager.getEpics().size());
-        assertEquals(loaded.getEpicById(epic.getId()),manager.getEpicById(epic.getId()));
+        assertEquals(1, manager.getEpics().size());
+        assertEquals(loaded.getEpicById(epic.getId()), manager.getEpicById(epic.getId()));
+    }
+
+    @Test
+    void loadSubtaskEpicNotExists() {
+        Subtask subtask = new Subtask("Subtask", "Desc", TaskStatus.NEW,
+                LocalDateTime.of(2023, 1, 1, 12, 0),
+                Duration.ofMinutes(30), 999);
+        subtask.setId(1);
+
+        manager.createSubtask(subtask);
+
+        assertNull(manager.getSubtaskById(1));
+        assertEquals(0, manager.getPrioritizedTasks().size());
+
+        FileBackedTaskManager loaded = FileBackedTaskManager.loadFromFile(file);
+
+        assertEquals(0, loaded.getPrioritizedTasks().size());
+        assertNull(loaded.getSubtaskById(1));
+    }
+
+    @Test
+    void loadSubtaskEpicExists() {
+        manager.createEpic(epic);
+
+        Subtask subtask = new Subtask("Subtask", "Desc", TaskStatus.NEW,
+                LocalDateTime.of(2023, 1, 1, 12, 0),
+                Duration.ofMinutes(30), epic.getId());
+        subtask.setId(2);
+
+        manager.createSubtask(subtask);
+
+        assertEquals(subtask, manager.getSubtaskById(2));
+        assertEquals(1, manager.getEpicsSubtasksById(epic.getId()).size());
+        assertEquals(1, manager.getPrioritizedTasks().size());
+        assertEquals(subtask, manager.getPrioritizedTasks().getFirst());
+
+        FileBackedTaskManager loaded = FileBackedTaskManager.loadFromFile(file);
+
+        assertEquals(subtask, loaded.getSubtaskById(2));
+        assertEquals(1, loaded.getEpicsSubtasksById(epic.getId()).size());
+        assertEquals(1, loaded.getPrioritizedTasks().size());
+        assertEquals(subtask, loaded.getPrioritizedTasks().getFirst());
+    }
+
+    @Test
+    void loadSubtaskIntersects() {
+        Assertions.assertDoesNotThrow(() -> {
+            BufferedWriter writer = new BufferedWriter(new FileWriter(file));
+            writer.append("1,EPIC,epic 1,NEW,first,null,null").append("\n");
+            writer.append("2,SUBTASK,Task 2,NEW,Conflict,2023-01-01T12:00,60,1").append("\n");
+            writer.append("3,SUBTASK,Task 3,NEW,Conflict,2023-01-01T12:30,45,1");
+            writer.close();
+        });
+
+        assertThrows(IllegalArgumentException.class, () -> FileBackedTaskManager.loadFromFile(file));
+    }
+
+    @Test
+    void loadSubtaskPrioritized() {
+        manager.createEpic(epic);
+
+        Subtask subtask = new Subtask("Prioritized", "Desc", TaskStatus.NEW,
+                LocalDateTime.of(2023, 1, 2, 15, 0),
+                Duration.ofMinutes(45), epic.getId());
+        subtask.setId(2);
+
+        manager.createSubtask(subtask);
+
+        FileBackedTaskManager loaded = FileBackedTaskManager.loadFromFile(file);
+
+        assertTrue(loaded.getPrioritizedTasks().contains(subtask));
     }
 
     //---------------------------------------------------
@@ -366,8 +469,8 @@ public class FileBackedTaskManagerTest {
         FileBackedTaskManager loaded = FileBackedTaskManager.loadFromFile(file);
 
         assertTrue(loaded.getSubtasks().isEmpty());
-        assertEquals(2,loaded.getEpics().size());
-        assertEquals(loaded.getEpicById(epic1.getId()),manager.getEpicById(epic1.getId()));
+        assertEquals(2, loaded.getEpics().size());
+        assertEquals(loaded.getEpicById(epic1.getId()), manager.getEpicById(epic1.getId()));
 
         manager.deleteAllEpics();
 
@@ -384,6 +487,39 @@ public class FileBackedTaskManagerTest {
 
         Epic epic1 = new Epic("Epic1", "Description1");
 
-        assertThrows(ManagerSaveException.class,() -> manager.createEpic(epic1));
+        assertThrows(ManagerSaveException.class, () -> manager.createEpic(epic1));
+    }
+
+    @Test
+    void loadEpicShouldBindSubtasks() {
+        manager.createEpic(epic);
+
+        Subtask sub = new Subtask("Subtask", "Desc", TaskStatus.NEW,
+                LocalDateTime.of(2023, 1, 1, 10, 0),
+                Duration.ofMinutes(30), 1);
+        manager.createSubtask(sub);
+
+        FileBackedTaskManager loaded = FileBackedTaskManager.loadFromFile(file);
+
+        assertEquals(1, loaded.getEpicById(1).getSubtasks().size());
+        assertEquals(sub, loaded.getEpicById(1).getSubtasks().getFirst());
+        assertEquals(1, loaded.getPrioritizedTasks().size());
+        assertEquals(sub, loaded.getPrioritizedTasks().getLast());
+    }
+
+    @Test
+    void loadEpicPrioritized() {
+        manager.createEpic(epic);
+
+        Subtask subtask = new Subtask("Subtask", "Desc", TaskStatus.NEW,
+                LocalDateTime.of(2023, 1, 1, 12, 0),
+                Duration.ofMinutes(30), epic.getId());
+        subtask.setId(2);
+
+        manager.createSubtask(subtask);
+
+        FileBackedTaskManager loaded = FileBackedTaskManager.loadFromFile(file);
+
+        assertFalse(loaded.getPrioritizedTasks().contains(epic));
     }
 }

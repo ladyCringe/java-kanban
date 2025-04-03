@@ -6,8 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="398610fb-ce3c-4875-a383-31eda8ee1778" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/service/FileBackedTaskManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/FileBackedTaskManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Epic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Epic.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/service/InMemoryTaskManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/InMemoryTaskManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/EpicTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/EpicTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/FileBackedTaskManagerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/FileBackedTaskManagerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/InMemoryTaskManagerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/InMemoryTaskManagerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/TaskManagerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/TaskManagerTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,6 +29,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="sprint_8-solution-time-and-duration" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectColorInfo">{
@@ -36,104 +45,150 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.FileBackedTaskManager.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
-    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;true&quot;,
-    &quot;JUnit.All in java-kanban.executor&quot;: &quot;Coverage&quot;,
-    &quot;JUnit.EpicTest.addSubtask.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.EpicTest.deleteAllSubtasks.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.EpicTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.EpicTest.getSubtasks.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.EpicTest.removeSubtask.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.EpicTest.replaceSubtask.executor&quot;: &quot;Coverage&quot;,
-    &quot;JUnit.EpicTest.testEpicCannotContainItself.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.FileBackedTaskManagerTest.deleteAllEpics.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.FileBackedTaskManagerTest.deleteAllSubtasks.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.FileBackedTaskManagerTest.deleteAllTasks.executor&quot;: &quot;Coverage&quot;,
-    &quot;JUnit.FileBackedTaskManagerTest.deleteSubtaskAndLoad.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.FileBackedTaskManagerTest.executor&quot;: &quot;Coverage&quot;,
-    &quot;JUnit.FileBackedTaskManagerTest.saveAndLoadMultipleSubtasks.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.FileBackedTaskManagerTest.saveAndLoadSingleSubtask.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.FileBackedTaskManagerTest.shouldReturnNullForUnknownTaskType.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.FileBackedTaskManagerTest.shouldSaveAndLoadEmptyFile.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.FileBackedTaskManagerTest.shouldSaveAndLoadMultipleTasks.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.FileBackedTaskManagerTest.shouldSaveAndLoadTasks.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.FileBackedTaskManagerTest.shouldThrowManagerSaveExceptionOnReadError.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.FileBackedTaskManagerTest.shouldThrowManagerSaveExceptionOnSave.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.FileBackedTaskManagerTest.testEpicWithNoSubtasks.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.FileBackedTaskManagerTest.testRemoveEpicAndSave.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.FileBackedTaskManagerTest.testRemoveTaskAndSave.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.FileBackedTaskManagerTest.updateTaskAndLoad.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.InMemoryHistoryManagerTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.InMemoryHistoryManagerTest.testAddTaskToHistory.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.InMemoryHistoryManagerTest.testHistoryMaxSize.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.InMemoryHistoryManagerTest.testNoDuplicatesInHistory.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.InMemoryHistoryManagerTest.testPreservePreviousTaskVersionInHistory.executor&quot;: &quot;Coverage&quot;,
-    &quot;JUnit.InMemoryHistoryManagerTest.testRemoveFromHistory.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.InMemoryTaskManagerTest.deleteAllEpics.executor&quot;: &quot;Coverage&quot;,
-    &quot;JUnit.InMemoryTaskManagerTest.deleteAllEpicsHistory.executor&quot;: &quot;Coverage&quot;,
-    &quot;JUnit.InMemoryTaskManagerTest.deleteAllSubtasks.executor&quot;: &quot;Coverage&quot;,
-    &quot;JUnit.InMemoryTaskManagerTest.deleteAllSubtasksHistory.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.InMemoryTaskManagerTest.deleteAllTasksHistory.executor&quot;: &quot;Coverage&quot;,
-    &quot;JUnit.InMemoryTaskManagerTest.deleteEpicById.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.InMemoryTaskManagerTest.deleteSubtaskById.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.InMemoryTaskManagerTest.deleteTaskById.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.InMemoryTaskManagerTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.InMemoryTaskManagerTest.getEpicsSubtasksById.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.InMemoryTaskManagerTest.getTasks.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.InMemoryTaskManagerTest.noConflictBetweenTasksWithGeneratedAndGivenId.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.InMemoryTaskManagerTest.testCreatGetEpicById.executor&quot;: &quot;Coverage&quot;,
-    &quot;JUnit.InMemoryTaskManagerTest.testCreateAndGetTaskById.executor&quot;: &quot;Coverage&quot;,
-    &quot;JUnit.InMemoryTaskManagerTest.testCreateEpic.executor&quot;: &quot;Coverage&quot;,
-    &quot;JUnit.InMemoryTaskManagerTest.testCreateSubtask.executor&quot;: &quot;Coverage&quot;,
-    &quot;JUnit.InMemoryTaskManagerTest.testCreateTask.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.InMemoryTaskManagerTest.testEpicDoesNotContainInvalidSubtaskIds.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.InMemoryTaskManagerTest.testGetSubtaskById.executor&quot;: &quot;Coverage&quot;,
-    &quot;JUnit.InMemoryTaskManagerTest.testGetTaskById.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.InMemoryTaskManagerTest.testSubtaskDeletionRemovesItFromEpic.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.InMemoryTaskManagerTest.testUpdateSubtask.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.InMemoryTaskManagerTest.updateEpic.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.InMemoryTaskManagerTest.updateTask.executor&quot;: &quot;Coverage&quot;,
-    &quot;JUnit.ManagersTest.testGetDefaultHistoryManager.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ManagersTest.testGetDefaultTaskManager.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.SubtaskTest.executor&quot;: &quot;Coverage&quot;,
-    &quot;JUnit.SubtaskTest.getEpicIdWhenNotNull.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.SubtaskTest.getEpicIdWhenNull.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.SubtaskTest.testSubtaskCannotBeItsOwnEpic.executor&quot;: &quot;Coverage&quot;,
-    &quot;JUnit.SubtaskTest.testSubtaskEquality.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.TaskTest.getDescription.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.TaskTest.getIdAfterPuttingInTasksInManager.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.TaskTest.getIdBeforePuttingInTasksInManager.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.TaskTest.getName.executor&quot;: &quot;Coverage&quot;,
-    &quot;JUnit.TaskTest.getNameTest.executor&quot;: &quot;Coverage&quot;,
-    &quot;JUnit.TaskTest.getStatus.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.TaskTest.getStatusIN_PROGRESS.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.TaskTest.setDescription.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.TaskTest.setId.executor&quot;: &quot;Coverage&quot;,
-    &quot;JUnit.TaskTest.setName.executor&quot;: &quot;Coverage&quot;,
-    &quot;JUnit.TaskTest.setStatusNEW.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.TaskTest.testEquals.executor&quot;: &quot;Coverage&quot;,
-    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;sprint__7-solution-in-file-manager&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/user/Documents/prak/финальные задания/3/java-kanban&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.FileBackedTaskManager.executor": "Run",
+    "Application.Main.executor": "Run",
+    "Downloaded.Files.Path.Enabled": "true",
+    "JUnit.All in java-kanban.executor": "Run",
+    "JUnit.EpicStatusTest.executor": "Run",
+    "JUnit.EpicStatusTest.statusAllNew.executor": "Debug",
+    "JUnit.EpicTest.addSubtask.executor": "Debug",
+    "JUnit.EpicTest.deleteAllSubtasks.executor": "Run",
+    "JUnit.EpicTest.executor": "Coverage",
+    "JUnit.EpicTest.getDurationWithoutSubtasks.executor": "Run",
+    "JUnit.EpicTest.getEndTimeWithSubtasks.executor": "Run",
+    "JUnit.EpicTest.getSubtasks.executor": "Run",
+    "JUnit.EpicTest.removeSubtask.executor": "Run",
+    "JUnit.EpicTest.replaceSubtask.executor": "Run",
+    "JUnit.EpicTest.testEpicCannotContainItself.executor": "Run",
+    "JUnit.EpicTest.testGetEndTimeSkipsNulls.executor": "Debug",
+    "JUnit.EpicTest.testGetEndTimeWithSubtasks.executor": "Debug",
+    "JUnit.EpicTest.testSetEndTimeStoresValueButDoesNotAffectCalculation.executor": "Run",
+    "JUnit.FileBackedTaskManagerTest and 1 more.executor": "Run",
+    "JUnit.FileBackedTaskManagerTest,createEpicWithIntersections and 1 more.executor": "Run",
+    "JUnit.FileBackedTaskManagerTest,createSubtaskOverlaps and 1 more.executor": "Debug",
+    "JUnit.FileBackedTaskManagerTest,detectTimeOverlapBetweenTasks and 1 more.executor": "Debug",
+    "JUnit.FileBackedTaskManagerTest,epicStatusCalculatedBySubtasksNEW and 1 more.executor": "Run",
+    "JUnit.FileBackedTaskManagerTest,getDurationWithSubtasks and 1 more.executor": "Run",
+    "JUnit.FileBackedTaskManagerTest,getEndTimeWithSubtasks and 1 more.executor": "Run",
+    "JUnit.FileBackedTaskManagerTest,shouldThrowIfTaskOverlapsAnother and 1 more.executor": "Run",
+    "JUnit.FileBackedTaskManagerTest,subtasksMustBelongToEpic and 1 more.executor": "Run",
+    "JUnit.FileBackedTaskManagerTest,updateEpicPrioritizedTasks and 1 more.executor": "Run",
+    "JUnit.FileBackedTaskManagerTest,updateIfNewStartTimeAndDurationAreNotNull and 1 more.executor": "Run",
+    "JUnit.FileBackedTaskManagerTest,updateSubtaskIfNotExists and 1 more.executor": "Run",
+    "JUnit.FileBackedTaskManagerTest,updateSubtaskNewStartTimeAndDuration and 1 more.executor": "Run",
+    "JUnit.FileBackedTaskManagerTest,updateSubtaskOverlaps and 1 more.executor": "Run",
+    "JUnit.FileBackedTaskManagerTest,updateTaskNewStartTimeAndDuration and 1 more.executor": "Run",
+    "JUnit.FileBackedTaskManagerTest,updateWithNewStartTimeAndDuration and 1 more.executor": "Run",
+    "JUnit.FileBackedTaskManagerTest,сreateSubtaskWithoutEpic and 1 more.executor": "Run",
+    "JUnit.FileBackedTaskManagerTest.deleteAllEpics.executor": "Run",
+    "JUnit.FileBackedTaskManagerTest.deleteAllSubtasks.executor": "Run",
+    "JUnit.FileBackedTaskManagerTest.deleteAllTasks.executor": "Coverage",
+    "JUnit.FileBackedTaskManagerTest.deleteSubtaskAndLoad.executor": "Run",
+    "JUnit.FileBackedTaskManagerTest.detectTimeOverlapBetweenTasks.executor": "Debug",
+    "JUnit.FileBackedTaskManagerTest.executor": "Run",
+    "JUnit.FileBackedTaskManagerTest.loadEpicShouldThrowIfOverlapping.executor": "Coverage",
+    "JUnit.FileBackedTaskManagerTest.loadEpicWithStartTimeShouldBePrioritized.executor": "Run",
+    "JUnit.FileBackedTaskManagerTest.loadSubtaskEpicExists.executor": "Run",
+    "JUnit.FileBackedTaskManagerTest.loadSubtaskEpicNotExists.executor": "Run",
+    "JUnit.FileBackedTaskManagerTest.loadSubtaskIntersects.executor": "Run",
+    "JUnit.FileBackedTaskManagerTest.loadSubtaskPrioritized.executor": "Run",
+    "JUnit.FileBackedTaskManagerTest.loadTaskIntersects.executor": "Run",
+    "JUnit.FileBackedTaskManagerTest.loadTaskPrioritized.executor": "Coverage",
+    "JUnit.FileBackedTaskManagerTest.saveAndLoadMultipleSubtasks.executor": "Run",
+    "JUnit.FileBackedTaskManagerTest.saveAndLoadSingleSubtask.executor": "Run",
+    "JUnit.FileBackedTaskManagerTest.shouldReturnNullForUnknownTaskType.executor": "Run",
+    "JUnit.FileBackedTaskManagerTest.shouldSaveAndLoadEmptyFile.executor": "Run",
+    "JUnit.FileBackedTaskManagerTest.shouldSaveAndLoadMultipleTasks.executor": "Run",
+    "JUnit.FileBackedTaskManagerTest.shouldSaveAndLoadTasks.executor": "Run",
+    "JUnit.FileBackedTaskManagerTest.shouldThrowManagerSaveExceptionOnReadError.executor": "Run",
+    "JUnit.FileBackedTaskManagerTest.shouldThrowManagerSaveExceptionOnSave.executor": "Run",
+    "JUnit.FileBackedTaskManagerTest.subtasksMustBelongToEpic.executor": "Run",
+    "JUnit.FileBackedTaskManagerTest.testEpicWithNoSubtasks.executor": "Run",
+    "JUnit.FileBackedTaskManagerTest.testRemoveEpicAndSave.executor": "Run",
+    "JUnit.FileBackedTaskManagerTest.testRemoveTaskAndSave.executor": "Run",
+    "JUnit.FileBackedTaskManagerTest.updateTaskAndLoad.executor": "Run",
+    "JUnit.InMemoryHistoryManagerTest.executor": "Run",
+    "JUnit.InMemoryHistoryManagerTest.testAddTaskToHistory.executor": "Run",
+    "JUnit.InMemoryHistoryManagerTest.testHistoryMaxSize.executor": "Run",
+    "JUnit.InMemoryHistoryManagerTest.testNoDuplicatesInHistory.executor": "Run",
+    "JUnit.InMemoryHistoryManagerTest.testPreservePreviousTaskVersionInHistory.executor": "Coverage",
+    "JUnit.InMemoryHistoryManagerTest.testRemoveFromHistory.executor": "Run",
+    "JUnit.InMemoryTaskManagerTest.createEpicPrioritized.executor": "Run",
+    "JUnit.InMemoryTaskManagerTest.createSubtaskOverlaps.executor": "Run",
+    "JUnit.InMemoryTaskManagerTest.createSubtaskPrioritized.executor": "Run",
+    "JUnit.InMemoryTaskManagerTest.deleteAllEpics.executor": "Coverage",
+    "JUnit.InMemoryTaskManagerTest.deleteAllEpicsHistory.executor": "Coverage",
+    "JUnit.InMemoryTaskManagerTest.deleteAllSubtasks.executor": "Coverage",
+    "JUnit.InMemoryTaskManagerTest.deleteAllSubtasksHistory.executor": "Run",
+    "JUnit.InMemoryTaskManagerTest.deleteAllTasksHistory.executor": "Coverage",
+    "JUnit.InMemoryTaskManagerTest.deleteEpicById.executor": "Run",
+    "JUnit.InMemoryTaskManagerTest.deleteSubtaskById.executor": "Run",
+    "JUnit.InMemoryTaskManagerTest.deleteTaskById.executor": "Run",
+    "JUnit.InMemoryTaskManagerTest.detectTimeOverlapBetweenTasks.executor": "Debug",
+    "JUnit.InMemoryTaskManagerTest.executor": "Run",
+    "JUnit.InMemoryTaskManagerTest.getDurationWithSubtasks.executor": "Run",
+    "JUnit.InMemoryTaskManagerTest.getEpicsSubtasksById.executor": "Run",
+    "JUnit.InMemoryTaskManagerTest.getPrioritizedTasksReturnsSortedList.executor": "Run",
+    "JUnit.InMemoryTaskManagerTest.getTasks.executor": "Run",
+    "JUnit.InMemoryTaskManagerTest.noConflictBetweenTasksWithGeneratedAndGivenId.executor": "Run",
+    "JUnit.InMemoryTaskManagerTest.subtasksMustBelongToEpic.executor": "Run",
+    "JUnit.InMemoryTaskManagerTest.testCreatGetEpicById.executor": "Coverage",
+    "JUnit.InMemoryTaskManagerTest.testCreateAndGetTaskById.executor": "Coverage",
+    "JUnit.InMemoryTaskManagerTest.testCreateEpic.executor": "Coverage",
+    "JUnit.InMemoryTaskManagerTest.testCreateSubtask.executor": "Coverage",
+    "JUnit.InMemoryTaskManagerTest.testCreateTask.executor": "Run",
+    "JUnit.InMemoryTaskManagerTest.testEpicDoesNotContainInvalidSubtaskIds.executor": "Run",
+    "JUnit.InMemoryTaskManagerTest.testGetSubtaskById.executor": "Coverage",
+    "JUnit.InMemoryTaskManagerTest.testGetTaskById.executor": "Run",
+    "JUnit.InMemoryTaskManagerTest.testSubtaskDeletionRemovesItFromEpic.executor": "Run",
+    "JUnit.InMemoryTaskManagerTest.testUpdateSubtask.executor": "Run",
+    "JUnit.InMemoryTaskManagerTest.updateEpic.executor": "Run",
+    "JUnit.InMemoryTaskManagerTest.updateEpicPrioritizedTasks.executor": "Coverage",
+    "JUnit.InMemoryTaskManagerTest.updateSubtaskNewStartTimeAndDuration.executor": "Run",
+    "JUnit.InMemoryTaskManagerTest.updateTask.executor": "Coverage",
+    "JUnit.ManagersTest.testGetDefaultHistoryManager.executor": "Run",
+    "JUnit.ManagersTest.testGetDefaultTaskManager.executor": "Run",
+    "JUnit.SubtaskTest.executor": "Coverage",
+    "JUnit.SubtaskTest.getEpicIdWhenNotNull.executor": "Run",
+    "JUnit.SubtaskTest.getEpicIdWhenNull.executor": "Run",
+    "JUnit.SubtaskTest.testSubtaskCannotBeItsOwnEpic.executor": "Coverage",
+    "JUnit.SubtaskTest.testSubtaskEquality.executor": "Run",
+    "JUnit.TaskManagerTest.executor": "Run",
+    "JUnit.TaskManagerTest.subtasksMustBelongToEpic.executor": "Run",
+    "JUnit.TaskTest.executor": "Coverage",
+    "JUnit.TaskTest.getDescription.executor": "Run",
+    "JUnit.TaskTest.getIdAfterPuttingInTasksInManager.executor": "Run",
+    "JUnit.TaskTest.getIdBeforePuttingInTasksInManager.executor": "Run",
+    "JUnit.TaskTest.getName.executor": "Coverage",
+    "JUnit.TaskTest.getNameTest.executor": "Coverage",
+    "JUnit.TaskTest.getStatus.executor": "Run",
+    "JUnit.TaskTest.getStatusIN_PROGRESS.executor": "Run",
+    "JUnit.TaskTest.setDescription.executor": "Run",
+    "JUnit.TaskTest.setId.executor": "Coverage",
+    "JUnit.TaskTest.setName.executor": "Coverage",
+    "JUnit.TaskTest.setStatusNEW.executor": "Run",
+    "JUnit.TaskTest.testEquals.executor": "Coverage",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
+    "git-widget-placeholder": "sprint__8-solution-time-and-duration",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/user/Documents/prak/финальные задания/3/java-kanban",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
@@ -142,20 +197,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.FileBackedTaskManager">
-    <configuration name="FileBackedTaskManager" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="service.FileBackedTaskManager" />
-      <module name="java-kanban" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="service.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="JUnit.All in java-kanban">
     <configuration name="All in java-kanban" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="java-kanban" />
       <option name="PACKAGE_NAME" value="" />
@@ -164,30 +206,52 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="FileBackedTaskManagerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="FileBackedTaskManagerTest and 1 more" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="java-kanban" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="FileBackedTaskManagerTest" />
-      <option name="TEST_OBJECT" value="class" />
+      <option name="MAIN_CLASS_NAME" value="TaskManagerTest" />
+      <option name="TEST_OBJECT" value="pattern" />
+      <patterns>
+        <pattern testClass="FileBackedTaskManagerTest" />
+        <pattern testClass="InMemoryTaskManagerTest" />
+      </patterns>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="FileBackedTaskManagerTest.shouldThrowManagerSaveExceptionOnReadError" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="FileBackedTaskManagerTest,createEpicWithIntersections and 1 more" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="java-kanban" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="FileBackedTaskManagerTest" />
-      <option name="METHOD_NAME" value="shouldThrowManagerSaveExceptionOnReadError" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="MAIN_CLASS_NAME" value="TaskManagerTest" />
+      <option name="METHOD_NAME" value="createEpicWithIntersections" />
+      <option name="TEST_OBJECT" value="pattern" />
+      <patterns>
+        <pattern testClass="FileBackedTaskManagerTest,createEpicWithIntersections" />
+        <pattern testClass="InMemoryTaskManagerTest,createEpicWithIntersections" />
+      </patterns>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="FileBackedTaskManagerTest.shouldThrowManagerSaveExceptionOnSave" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="FileBackedTaskManagerTest,updateTaskNewStartTimeAndDuration and 1 more" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="java-kanban" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="FileBackedTaskManagerTest" />
-      <option name="METHOD_NAME" value="shouldThrowManagerSaveExceptionOnSave" />
+      <option name="MAIN_CLASS_NAME" value="TaskManagerTest" />
+      <option name="METHOD_NAME" value="updateTaskNewStartTimeAndDuration" />
+      <option name="TEST_OBJECT" value="pattern" />
+      <patterns>
+        <pattern testClass="FileBackedTaskManagerTest,updateTaskNewStartTimeAndDuration" />
+        <pattern testClass="InMemoryTaskManagerTest,updateTaskNewStartTimeAndDuration" />
+      </patterns>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="InMemoryTaskManagerTest.updateSubtaskNewStartTimeAndDuration" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="java-kanban" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="InMemoryTaskManagerTest" />
+      <option name="METHOD_NAME" value="updateSubtaskNewStartTimeAndDuration" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -195,11 +259,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.FileBackedTaskManager" />
         <item itemvalue="JUnit.All in java-kanban" />
-        <item itemvalue="JUnit.FileBackedTaskManagerTest" />
-        <item itemvalue="JUnit.FileBackedTaskManagerTest.shouldThrowManagerSaveExceptionOnReadError" />
-        <item itemvalue="JUnit.FileBackedTaskManagerTest.shouldThrowManagerSaveExceptionOnSave" />
+        <item itemvalue="JUnit.FileBackedTaskManagerTest,createEpicWithIntersections and 1 more" />
+        <item itemvalue="JUnit.FileBackedTaskManagerTest,createEpicWithIntersections and 1 more" />
+        <item itemvalue="JUnit.FileBackedTaskManagerTest and 1 more" />
+        <item itemvalue="JUnit.FileBackedTaskManagerTest,updateTaskNewStartTimeAndDuration and 1 more" />
       </list>
     </recent_temporary>
   </component>
@@ -251,28 +315,39 @@
         <PinnedItemInfo parentTag="FileBackedTaskManagerTest" memberName="file" />
       </pinned-members>
     </pin-to-top-manager>
+    <watches-manager>
+      <configuration name="JUnit">
+        <watch expression="this.duration" custom="model.Epic" />
+      </configuration>
+    </watches-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/java_kanban$InMemoryTaskManagerTest_testGetSubtaskById.ic" NAME="InMemoryTaskManagerTest.testGetSubtaskById Coverage Results" MODIFIED="1738094958793" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
     <SUITE FILE_PATH="coverage/java_kanban$InMemoryTaskManagerTest_deleteAllEpics.ic" NAME="InMemoryTaskManagerTest.deleteAllEpics Coverage Results" MODIFIED="1738097840035" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
     <SUITE FILE_PATH="coverage/java_kanban$InMemoryTaskManagerTest_deleteAllSubtasksHistory.ic" NAME="InMemoryTaskManagerTest.deleteAllSubtasksHistory Coverage Results" MODIFIED="1741875475821" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
     <SUITE FILE_PATH="coverage/java_kanban$TaskTest_getNameTest.ic" NAME="TaskTest.getNameTest Coverage Results" MODIFIED="1738070367615" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
+    <SUITE FILE_PATH="coverage/java_kanban$FileBackedTaskManagerTest_loadEpicShouldThrowIfOverlapping.ic" NAME="FileBackedTaskManagerTest.loadEpicShouldThrowIfOverlapping Coverage Results" MODIFIED="1743282223977" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
+    <SUITE FILE_PATH="coverage/java_kanban$FileBackedTaskManagerTest_loadTaskPrioritized.ic" NAME="FileBackedTaskManagerTest.loadTaskPrioritized Coverage Results" MODIFIED="1743279696090" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
     <SUITE FILE_PATH="coverage/java_kanban$InMemoryTaskManagerTest.ic" NAME="InMemoryTaskManagerTest Coverage Results" MODIFIED="1741894953187" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
-    <SUITE FILE_PATH="coverage/java_kanban$EpicTest.ic" NAME="EpicTest Coverage Results" MODIFIED="1738102938838" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
+    <SUITE FILE_PATH="coverage/java_kanban$EpicTest.ic" NAME="EpicTest Coverage Results" MODIFIED="1743272960512" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
     <SUITE FILE_PATH="coverage/java_kanban$InMemoryHistoryManagerTest.ic" NAME="InMemoryHistoryManagerTest Coverage Results" MODIFIED="1741865879410" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
     <SUITE FILE_PATH="coverage/java_kanban$TaskTest_setName.ic" NAME="TaskTest.setName Coverage Results" MODIFIED="1738068862467" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
     <SUITE FILE_PATH="coverage/java_kanban$InMemoryTaskManagerTest_testUpdateSubtask.ic" NAME="InMemoryTaskManagerTest.testUpdateSubtask Coverage Results" MODIFIED="1738099672356" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
     <SUITE FILE_PATH="coverage/java_kanban$InMemoryTaskManagerTest_deleteAllEpicsHistory.ic" NAME="InMemoryTaskManagerTest.deleteAllEpicsHistory Coverage Results" MODIFIED="1741876315543" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
+    <SUITE FILE_PATH="coverage/java_kanban$InMemoryTaskManagerTest_updateEpicPrioritizedTasks.ic" NAME="InMemoryTaskManagerTest.updateEpicPrioritizedTasks Coverage Results" MODIFIED="1743278389384" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
     <SUITE FILE_PATH="coverage/java_kanban$EpicTest_replaceSubtask.ic" NAME="EpicTest.replaceSubtask Coverage Results" MODIFIED="1742480415156" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
+    <SUITE FILE_PATH="coverage/java_kanban$TaskTest.ic" NAME="TaskTest Coverage Results" MODIFIED="1743268396476" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
     <SUITE FILE_PATH="coverage/java_kanban$TaskTest_testEquals.ic" NAME="TaskTest.testEquals Coverage Results" MODIFIED="1738070797488" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
+    <SUITE FILE_PATH="coverage/java_kanban$FileBackedTaskManagerTest_and_1_more.ic" NAME="FileBackedTaskManagerTest and 1 more Coverage Results" MODIFIED="1743275348055" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
     <SUITE FILE_PATH="coverage/java_kanban$InMemoryTaskManagerTest_testCreateSubtask.ic" NAME="InMemoryTaskManagerTest.testCreateSubtask Coverage Results" MODIFIED="1738094684805" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
     <SUITE FILE_PATH="coverage/java_kanban$InMemoryTaskManagerTest_deleteAllTasksHistory.ic" NAME="InMemoryTaskManagerTest.deleteAllTasksHistory Coverage Results" MODIFIED="1741875216899" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
     <SUITE FILE_PATH="coverage/java_kanban$InMemoryTaskManagerTest_deleteSubtaskById.ic" NAME="InMemoryTaskManagerTest.deleteSubtaskById Coverage Results" MODIFIED="1741887978825" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
     <SUITE FILE_PATH="coverage/java_kanban$InMemoryTaskManagerTest_deleteAllSubtasks.ic" NAME="InMemoryTaskManagerTest.deleteAllSubtasks Coverage Results" MODIFIED="1738096317131" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
     <SUITE FILE_PATH="coverage/java_kanban$InMemoryTaskManagerTest_deleteTaskById.ic" NAME="InMemoryTaskManagerTest.deleteTaskById Coverage Results" MODIFIED="1738093108826" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
     <SUITE FILE_PATH="coverage/java_kanban$TaskTest_setId.ic" NAME="TaskTest.setId Coverage Results" MODIFIED="1738070430025" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
-    <SUITE FILE_PATH="coverage/java_kanban$All_in_java_kanban.ic" NAME="All in java-kanban Coverage Results" MODIFIED="1743025349774" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
+    <SUITE FILE_PATH="coverage/java_kanban$All_in_java_kanban.ic" NAME="All in java-kanban Coverage Results" MODIFIED="1743365695634" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
     <SUITE FILE_PATH="coverage/java_kanban$InMemoryTaskManagerTest_testCreateEpic.ic" NAME="InMemoryTaskManagerTest.testCreateEpic Coverage Results" MODIFIED="1738097382637" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
+    <SUITE FILE_PATH="coverage/java_kanban$EpicTest_testGetEndTimeWithSubtasks.ic" NAME="EpicTest.testGetEndTimeWithSubtasks Coverage Results" MODIFIED="1743272634573" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
     <SUITE FILE_PATH="coverage/java_kanban$EpicTest_removeSubtask.ic" NAME="EpicTest.removeSubtask Coverage Results" MODIFIED="1738077356785" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
     <SUITE FILE_PATH="coverage/java_kanban$SubtaskTest_testSubtaskEquality.ic" NAME="SubtaskTest.testSubtaskEquality Coverage Results" MODIFIED="1738073422175" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
     <SUITE FILE_PATH="coverage/java_kanban$InMemoryHistoryManagerTest_testAddTaskToHistory.ic" NAME="InMemoryHistoryManagerTest.testAddTaskToHistory Coverage Results" MODIFIED="1738088050992" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />

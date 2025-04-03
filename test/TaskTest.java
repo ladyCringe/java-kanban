@@ -1,9 +1,13 @@
 import model.Task;
 import model.TaskStatus;
+import model.TaskType;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import service.Managers;
 import service.TaskManager;
+
+import java.time.Duration;
+import java.time.LocalDateTime;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -20,40 +24,40 @@ class TaskTest {
 
     @Test
     void getNameTest() {
-        assertEquals(task.getName(),"testName");
+        assertEquals("testName", task.getName());
     }
 
     @Test
     void setName() {
         task.setName("testName2");
-        assertEquals("testName2",task.getName());
+        assertEquals("testName2", task.getName());
     }
 
     @Test
     void getDescription() {
-        assertEquals(task.getDescription(),"testDescription");
+        assertEquals("testDescription", task.getDescription());
     }
 
     @Test
     void setDescription() {
         task.setDescription("newDescription");
-        assertEquals("newDescription",task.getDescription());
+        assertEquals("newDescription", task.getDescription());
     }
 
     @Test
     void getStatus() {
-        assertEquals(task.getStatus(),TaskStatus.IN_PROGRESS);
+        assertEquals(TaskStatus.IN_PROGRESS, task.getStatus());
         task.setStatus(TaskStatus.DONE);
-        assertEquals(task.getStatus(),TaskStatus.DONE);
+        assertEquals(TaskStatus.DONE, task.getStatus());
         task.setStatus(TaskStatus.NEW);
-        assertEquals(task.getStatus(),TaskStatus.NEW);
+        assertEquals(TaskStatus.NEW, task.getStatus());
 
     }
 
     @Test
     void setStatus() {
         task.setStatus(TaskStatus.NEW);
-        assertEquals(task.getStatus(),TaskStatus.NEW);
+        assertEquals(TaskStatus.NEW, task.getStatus());
     }
 
     @Test
@@ -62,15 +66,21 @@ class TaskTest {
     }
 
     @Test
+    void getType() {
+        manager.createTask(task);
+        assertEquals(TaskType.TASK, task.getType());
+    }
+
+    @Test
     void getIdAfterPuttingInTasksInManager() {
         manager.createTask(task);
-        assertEquals(task.getId(),1);
+        assertEquals(1, task.getId());
     }
 
     @Test
     void setId() {
         task.setId(1);
-        assertEquals(task.getId(),1);
+        assertEquals(1, task.getId());
     }
 
     @Test
@@ -80,7 +90,49 @@ class TaskTest {
         task2.setId(task.getId());
         assertEquals(task, task2);
         assertEquals(task, task);
-        assertNotEquals(task,null);
-        assertNotEquals(task,2);
+        assertNotEquals(null, task);
+        assertNotEquals(2, task);
+    }
+
+    @Test
+    void testSetStartTime() {
+        LocalDateTime now = LocalDateTime.now();
+        task.setStartTime(now);
+        assertEquals(now, task.getStartTime());
+    }
+
+    @Test
+    void testSetDuration() {
+        Duration duration = Duration.ofMinutes(90);
+        task.setDuration(duration);
+        assertEquals(duration, task.getDuration());
+    }
+
+    @Test
+    void testGetEndTimeWhenStartAndDurationAreSet() {
+        LocalDateTime start = LocalDateTime.of(2024, 3, 29, 14, 0);
+        Duration duration = Duration.ofMinutes(45);
+        task.setStartTime(start);
+        task.setDuration(duration);
+
+        LocalDateTime expectedEnd = start.plus(duration);
+        assertEquals(expectedEnd, task.getEndTime());
+    }
+
+    @Test
+    void testGetEndTimeWhenStartIsNull() {
+        task.setDuration(Duration.ofMinutes(30));
+        assertNull(task.getEndTime());
+    }
+
+    @Test
+    void testGetEndTimeWhenDurationIsNull() {
+        task.setStartTime(LocalDateTime.now());
+        assertNull(task.getEndTime());
+    }
+
+    @Test
+    void testGetEndTimeWhenStartAndDurationAreNull() {
+        assertNull(task.getEndTime());
     }
 }

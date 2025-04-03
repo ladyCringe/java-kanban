@@ -1,22 +1,43 @@
 package model;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Objects;
 
 import static model.TaskType.EPIC;
 
 public class Epic extends Task {
 
     private final ArrayList<Subtask> subtasks;
+    private LocalDateTime endTime;
 
+    //---------------------------------------------------
+    //конструктор
+    //---------------------------------------------------
     public Epic(String name, String description) {
         super(name, description, TaskStatus.NEW);
         this.subtasks = new ArrayList<>();
     }
 
+    //---------------------------------------------------
+    //блок геттеров и сеттеров
+    //---------------------------------------------------
     public TaskType getType() {
         return EPIC;
     }
 
+    @Override
+    public LocalDateTime getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(LocalDateTime endTime) {
+        this.endTime = endTime;
+    }
+
+    //---------------------------------------------------
+    //блок методов для Subtask
+    //---------------------------------------------------
     public void addSubtask(Subtask subtask) {
         if (subtasks.contains(subtask)) {
             System.out.println("model.Subtask already exists here");
@@ -29,7 +50,14 @@ public class Epic extends Task {
             System.out.println("method addSubtask in model.Epic");
             return;
         }
+
         subtasks.add(subtask);
+
+        setEndTime(getSubtasks().stream()
+                .map(Subtask::getEndTime)
+                .filter(Objects::nonNull)
+                .max(LocalDateTime::compareTo)
+                .orElse(null));
     }
 
     public void removeSubtask(Subtask subtask) {
@@ -64,11 +92,17 @@ public class Epic extends Task {
         subtasks.set(subtasks.indexOf(subtaskBefore), subtaskAfter);
     }
 
+    //---------------------------------------------------
+    // создание копии
+    //---------------------------------------------------
     @Override
     public Task cloneTask() {
         Epic newTask = new Epic(getName(), getDescription());
         newTask.setId(getId());
         newTask.setStatus(getStatus());
+        newTask.setDuration(getDuration());
+        newTask.setStartTime(getStartTime());
+        newTask.setEndTime(getEndTime());
         newTask.subtasks.addAll(subtasks);
         return newTask;
     }
@@ -77,6 +111,9 @@ public class Epic extends Task {
         Epic newTask = new Epic(getName(), getDescription());
         newTask.setId(getId());
         newTask.setStatus(getStatus());
+        newTask.setDuration(getDuration());
+        newTask.setStartTime(getStartTime());
+        newTask.setEndTime(getEndTime());
         newTask.subtasks.addAll(subtasks);
         return newTask;
     }

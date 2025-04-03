@@ -1,11 +1,14 @@
 import model.Epic;
 import model.Subtask;
 import model.TaskStatus;
+import model.TaskType;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import service.Managers;
 import service.TaskManager;
 
+import java.time.Duration;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -95,4 +98,44 @@ class EpicTest {
         assertEquals(0, epic.getSubtasks().size());
     }
 
+    @Test
+    void getEndTimeWithNoSubtasks() {
+        assertNull(epic.getEndTime());
+    }
+
+    @Test
+    void getEndTimeSkipsNulls() {
+        Subtask sub1 = new Subtask("Sub 1", "Desc 1", TaskStatus.NEW,
+                null, Duration.ofMinutes(30), epic.getId());
+        sub1.setId(2);
+
+        Subtask sub2 = new Subtask("Sub 2", "Desc 2", TaskStatus.NEW,
+                LocalDateTime.of(2024, 3, 31, 10, 0),
+                Duration.ofMinutes(90), epic.getId());
+        sub2.setId(3);
+
+        epic.addSubtask(sub1);
+        epic.addSubtask(sub2);
+
+        assertEquals(sub2.getEndTime(), epic.getEndTime());
+    }
+
+    @Test
+    void testSetEndTime() {
+        LocalDateTime manualEnd = LocalDateTime.of(2030, 1, 1, 0, 0);
+        epic.setEndTime(manualEnd);
+
+        assertNotNull(epic.getEndTime());
+        assertEquals(manualEnd, epic.getEndTime());
+    }
+
+    @Test
+    void getType() {
+        assertEquals(TaskType.EPIC, epic.getType());
+    }
+
+    @Test
+    void getDurationWithoutSubtasks() {
+        assertNull(epic.getDuration());
+    }
 }

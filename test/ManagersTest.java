@@ -24,7 +24,7 @@ class ManagersTest {
         epic = new Epic("Test model.Epic", "Test Description");
         manager.createTask(task);
         manager.createEpic(epic);
-        subtask = new Subtask("SubtaskName", "SubtaskDescription",TaskStatus.NEW, epic.getId());
+        subtask = new Subtask("SubtaskName", "SubtaskDescription", TaskStatus.NEW, epic.getId());
         manager.createSubtask(subtask);
     }
 
