@@ -103,7 +103,9 @@ public class Epic extends Task {
         newTask.setDuration(getDuration());
         newTask.setStartTime(getStartTime());
         newTask.setEndTime(getEndTime());
-        newTask.subtasks.addAll(subtasks);
+        if (subtasks != null) {
+            newTask.subtasks.addAll(subtasks);
+        }
         return newTask;
     }
 
@@ -114,7 +116,9 @@ public class Epic extends Task {
         newTask.setDuration(getDuration());
         newTask.setStartTime(getStartTime());
         newTask.setEndTime(getEndTime());
-        newTask.subtasks.addAll(subtasks);
+        if (subtasks != null) {
+            newTask.subtasks.addAll(subtasks);
+        }
         return newTask;
     }
 }

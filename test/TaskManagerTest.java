@@ -1,3 +1,4 @@
+import exceptions.NotFoundException;
 import model.Epic;
 import model.Subtask;
 import model.Task;
@@ -149,7 +150,7 @@ public abstract class TaskManagerTest<T extends TaskManager> {
     @Test
     void testCreateTask() {
         manager.createTask(task);
-        manager.createTask(task);
+        assertThrows(NotFoundException.class, () -> manager.createTask(task));
 
         assertEquals(1, manager.getTasks().size());
 
@@ -173,9 +174,7 @@ public abstract class TaskManagerTest<T extends TaskManager> {
         Task task3 = new Task("Test model.Task", "model.Task Description", TaskStatus.NEW);
         task3.setId(2);
 
-        task2 = manager.getTaskById(2);
-
-        assertNull(task2);
+        assertThrows(NotFoundException.class, () -> manager.getTaskById(2));
     }
 
     @Test
@@ -200,9 +199,7 @@ public abstract class TaskManagerTest<T extends TaskManager> {
 
         Task task3 = new Task("New model.Task Name", "New model.Task Description", TaskStatus.NEW);
         task2.setId(10);
-        manager.updateTask(task3);
-
-        assertNull(manager.getTaskById(10));
+        assertThrows(NotFoundException.class, () -> manager.updateTask(task3));
     }
 
     @Test
@@ -247,9 +244,7 @@ public abstract class TaskManagerTest<T extends TaskManager> {
         manager.createTask(task);
         Task unknown = new Task("Ghost", "No such task", TaskStatus.NEW);
         unknown.setId(999);
-        manager.updateTask(unknown);
-
-        assertNull(manager.getTaskById(999));
+        assertThrows(NotFoundException.class, () -> manager.updateTask(unknown));
     }
 
     @Test
@@ -258,7 +253,7 @@ public abstract class TaskManagerTest<T extends TaskManager> {
         assertEquals(task, manager.getTaskById(task.getId()));
         Task task2 = new Task("New model.Task Name", "New model.Task Description", TaskStatus.NEW);
         task2.setId(2);
-        manager.deleteTaskById(2);
+        assertThrows(NotFoundException.class, () -> manager.deleteTaskById(2));
 
         assertEquals(1, manager.getTasks().size());
         assertEquals(1, manager.getHistory().size());
@@ -326,7 +321,7 @@ public abstract class TaskManagerTest<T extends TaskManager> {
         Subtask subtask = new Subtask("model.Subtask 1", "model.Subtask Description",
                 TaskStatus.NEW, epic.getId());
         manager.createSubtask(subtask);
-        manager.createSubtask(subtask);
+        assertThrows(NotFoundException.class, () -> manager.createSubtask(subtask));
 
         assertEquals(1, manager.getSubtasks().size());
 
@@ -334,14 +329,14 @@ public abstract class TaskManagerTest<T extends TaskManager> {
         newEpic.setId(2);
         Subtask subtask2 = new Subtask("model.Subtask 2", "model.Subtask Description",
                 TaskStatus.NEW, newEpic.getId());
-        manager.createSubtask(subtask2);
+        assertThrows(NotFoundException.class, () -> manager.createSubtask(subtask2));
 
         assertEquals(1, manager.getSubtasks().size());
 
         Subtask subtask3 = new Subtask("model.Subtask 2", "model.Subtask Description",
                 TaskStatus.NEW, epic.getId());
         subtask3.setId(epic.getId());
-        manager.createSubtask(subtask3);
+        assertThrows(NotFoundException.class, () -> manager.createSubtask(subtask3));
     }
 
     @Test
@@ -352,10 +347,9 @@ public abstract class TaskManagerTest<T extends TaskManager> {
         Subtask subtask = new Subtask("Orphan", "Has no parent",
                 TaskStatus.NEW, fakeEpic.getId());
 
-        manager.createSubtask(subtask);
+        assertThrows(NotFoundException.class, () -> manager.createSubtask(subtask));
 
         assertTrue(manager.getSubtasks().isEmpty());
-        assertNull(manager.getSubtaskById(subtask.getId()));
     }
 
     @Test
@@ -392,9 +386,7 @@ public abstract class TaskManagerTest<T extends TaskManager> {
                 TaskStatus.NEW, epic.getId());
         subtask3.setId(3);
 
-        subtask2 = manager.getSubtaskById(3);
-
-        assertNull(subtask2);
+        assertThrows(NotFoundException.class, () -> manager.getSubtaskById(3));
     }
 
     @Test
@@ -425,16 +417,16 @@ public abstract class TaskManagerTest<T extends TaskManager> {
         Subtask subtask2 = new Subtask("model.Subtask 22", "model.Subtask Description",
                 TaskStatus.NEW, epic.getId());
         subtask2.setId(10);
-        manager.updateSubtask(subtask2);
+        assertThrows(NotFoundException.class, () -> manager.updateSubtask(subtask2));
 
-        assertNull(manager.getSubtaskById(10));
+        assertThrows(NotFoundException.class, () -> assertNull(manager.getSubtaskById(10)));
 
         Epic newEpic = new Epic("New model.Epic Description", "New model.Epic Description");
         newEpic.setId(2);
         Subtask subtask3 = new Subtask("model.Subtask 3", "model.Subtask Description",
                 TaskStatus.NEW, newEpic.getId());
         subtask3.setId(subtask.getId());
-        manager.updateSubtask(subtask3);
+        assertThrows(NotFoundException.class, () -> manager.updateSubtask(subtask3));
 
         assertEquals("Updated model.Subtask Name", updatedSubtask.getName());
         assertEquals(TaskStatus.IN_PROGRESS, updatedSubtask.getStatus());
@@ -492,9 +484,7 @@ public abstract class TaskManagerTest<T extends TaskManager> {
         manager.createEpic(epic);
         Subtask unknown = new Subtask("Ghost", "desc", TaskStatus.NEW, epic.getId());
         unknown.setId(999);
-        manager.updateSubtask(unknown);
-
-        assertNull(manager.getSubtaskById(999));
+        assertThrows(NotFoundException.class, () -> manager.updateSubtask(unknown));
     }
 
     @Test
@@ -520,9 +510,9 @@ public abstract class TaskManagerTest<T extends TaskManager> {
         assertEquals(subtask2, manager.getSubtasks().getFirst());
         assertEquals(1, manager.getHistory().size());
         assertFalse(manager.getEpicsSubtasksById(epic.getId()).contains(subtask1));
-        assertNull(manager.getSubtaskById(subtask1.getId()));
+        assertThrows(NotFoundException.class, () -> manager.getSubtaskById(subtask1.getId()));
 
-        manager.deleteSubtaskById(subtask1.getId());
+        assertThrows(NotFoundException.class, () -> manager.deleteSubtaskById(subtask1.getId()));
 
         assertEquals(1, manager.getSubtasks().size());
         assertEquals(subtask2, manager.getSubtasks().getFirst());
@@ -533,7 +523,7 @@ public abstract class TaskManagerTest<T extends TaskManager> {
 
         assertEquals(0, manager.getSubtasks().size());
         assertTrue(manager.getHistory().isEmpty());
-        assertNull(manager.getSubtaskById(subtask2.getId()));
+        assertThrows(NotFoundException.class, () -> manager.getSubtaskById(subtask2.getId()));
     }
 
     //---------------------------------------------------
@@ -581,15 +571,15 @@ public abstract class TaskManagerTest<T extends TaskManager> {
 
         assertTrue(manager.getEpics().isEmpty());
         assertTrue(manager.getSubtasks().isEmpty());
-        assertNull(manager.getEpicsSubtasksById(epic.getId()));
-        assertNull(manager.getEpicsSubtasksById(epic2.getId()));
+        assertThrows(NotFoundException.class, () -> manager.getEpicsSubtasksById(epic.getId()));
+        assertThrows(NotFoundException.class, () -> manager.getEpicsSubtasksById(epic2.getId()));
         assertTrue(manager.getHistory().isEmpty());
     }
 
     @Test
     void testCreateEpic() {
         manager.createEpic(epic);
-        manager.createEpic(epic);
+        assertThrows(NotFoundException.class, () -> manager.createEpic(epic));
 
         assertEquals(1, manager.getEpics().size());
     }
@@ -604,9 +594,7 @@ public abstract class TaskManagerTest<T extends TaskManager> {
 
         Epic newEpic2 = new Epic("New model.Epic Description", "New model.Epic Description");
         newEpic2.setId(2);
-        newEpic = manager.getEpicById(2);
-
-        assertNull(newEpic);
+        assertThrows(NotFoundException.class, () -> manager.getEpicById(2));
     }
 
     @Test
@@ -644,9 +632,9 @@ public abstract class TaskManagerTest<T extends TaskManager> {
 
         Epic epic2 = new Epic("New model.Epic Description", "New model.Epic Description");
         epic2.setId(2);
-        manager.updateEpic(epic2);
+        assertThrows(NotFoundException.class, () -> manager.updateEpic(epic2));
 
-        assertNull(manager.getEpicById(2));
+        assertThrows(NotFoundException.class, () -> manager.getEpicById(2));
     }
 
     @Test
@@ -663,7 +651,7 @@ public abstract class TaskManagerTest<T extends TaskManager> {
 
         Epic epic2 = new Epic("model.Epic 2", "Description model.Epic 2");
         epic2.setId(3);
-        manager.deleteEpicById(epic2.getId());
+        assertThrows(NotFoundException.class, () -> manager.deleteEpicById(epic2.getId()));
 
         assertEquals(1, manager.getEpics().size());
 
@@ -699,8 +687,7 @@ public abstract class TaskManagerTest<T extends TaskManager> {
         Subtask subtask3 = new Subtask("model.Subtask 2", "Description model.Subtask 2",
                 TaskStatus.IN_PROGRESS, epic2.getId());
         epic2.addSubtask(subtask3);
-        List<Subtask> subtasks2 = manager.getEpicsSubtasksById(epic2.getId());
-        assertNull(subtasks2);
+        assertThrows(NotFoundException.class, () -> manager.getEpicsSubtasksById(epic2.getId()));
     }
 
     @Test
@@ -753,7 +740,7 @@ public abstract class TaskManagerTest<T extends TaskManager> {
 
         assertFalse(epic.getSubtasks().contains(subtask1));
         assertEquals(0, epic.getSubtasks().size());
-        assertNull(manager.getSubtaskById(subtask1.getId()));
+        assertThrows(NotFoundException.class, () -> manager.getSubtaskById(subtask1.getId()));
     }
 
     @Test
