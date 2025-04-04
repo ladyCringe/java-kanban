@@ -1,4 +1,5 @@
 import exceptions.ManagerSaveException;
+import exceptions.NotFoundException;
 import model.Epic;
 import model.Subtask;
 import model.Task;
@@ -85,7 +86,7 @@ public class FileBackedTaskManagerTest extends TaskManagerTest<FileBackedTaskMan
         manager.deleteTaskById(task.getId());
 
         FileBackedTaskManager loaded = FileBackedTaskManager.loadFromFile(file);
-        assertNull(loaded.getTaskById(task.getId()));
+        assertThrows(NotFoundException.class, () -> loaded.getTaskById(task.getId()));
         assertEquals(0, loaded.getTasks().size());
     }
 
@@ -131,7 +132,7 @@ public class FileBackedTaskManagerTest extends TaskManagerTest<FileBackedTaskMan
 
         manager.createTask(task);
         FileBackedTaskManager loaded = FileBackedTaskManager.loadFromFile(file);
-        loaded.createTask(task);
+        assertThrows(NotFoundException.class, () -> loaded.createTask(task));
 
         assertEquals(1, loaded.getPrioritizedTasks().size());
         assertEquals(task, loaded.getPrioritizedTasks().getFirst());
@@ -253,7 +254,7 @@ public class FileBackedTaskManagerTest extends TaskManagerTest<FileBackedTaskMan
         manager.deleteSubtaskById(subtask.getId());
 
         FileBackedTaskManager loadedManager = FileBackedTaskManager.loadFromFile(file);
-        assertNull(loadedManager.getSubtaskById(subtask.getId()));
+        assertThrows(NotFoundException.class, () -> loadedManager.getSubtaskById(subtask.getId()));
         assertEquals(0, loadedManager.getSubtasks().size());
         assertEquals(0, manager.getEpicById(epic.getId()).getSubtasks().size());
     }
@@ -288,15 +289,15 @@ public class FileBackedTaskManagerTest extends TaskManagerTest<FileBackedTaskMan
                 Duration.ofMinutes(30), 999);
         subtask.setId(1);
 
-        manager.createSubtask(subtask);
+        assertThrows(NotFoundException.class, () -> manager.createSubtask(subtask));
 
-        assertNull(manager.getSubtaskById(1));
+        assertThrows(NotFoundException.class, () -> assertNull(manager.getSubtaskById(1)));
         assertEquals(0, manager.getPrioritizedTasks().size());
 
         FileBackedTaskManager loaded = FileBackedTaskManager.loadFromFile(file);
 
         assertEquals(0, loaded.getPrioritizedTasks().size());
-        assertNull(loaded.getSubtaskById(1));
+        assertThrows(NotFoundException.class, () -> loaded.getSubtaskById(1));
     }
 
     @Test
@@ -398,7 +399,7 @@ public class FileBackedTaskManagerTest extends TaskManagerTest<FileBackedTaskMan
         manager.deleteEpicById(epic.getId());
 
         FileBackedTaskManager loaded = FileBackedTaskManager.loadFromFile(file);
-        assertNull(loaded.getEpicById(epic.getId()));
+        assertThrows(NotFoundException.class, () -> loaded.getEpicById(epic.getId()));
         assertEquals(0, loaded.getEpics().size());
     }
 
