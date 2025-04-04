@@ -47,7 +47,7 @@ public class SubtasksHandler extends BaseHttpHandler {
         if (parts.length == 2) {
             try {
                 manager.createSubtask(subtask);
-                sendText(exchange, gson.toJson(manager.getSubtasks()), 201);
+                sendText(exchange, gson.toJson(manager.getSubtaskById(subtask.getId())), 201);
             } catch (IllegalArgumentException e) {
                 sendHasInteractions(exchange, e.getMessage());
             } catch (NotFoundException e) {
@@ -57,7 +57,7 @@ public class SubtasksHandler extends BaseHttpHandler {
             if (subtask.getId() != null && Integer.parseInt(parts[2]) == subtask.getId()) {
                 try {
                     manager.updateSubtask(subtask);
-                    sendText(exchange, gson.toJson(manager.getSubtasks()), 201);
+                    sendText(exchange, 201);
                 } catch (IllegalArgumentException e) {
                     sendHasInteractions(exchange, e.getMessage());
                 } catch (NotFoundException e) {

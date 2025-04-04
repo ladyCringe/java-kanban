@@ -55,7 +55,7 @@ public class EpicsHandler extends BaseHttpHandler {
         if (parts.length == 2) {
             try {
                 manager.createEpic(epic);
-                sendText(exchange, gson.toJson(manager.getEpics()), 201);
+                sendText(exchange, gson.toJson(manager.getEpicById(epic.getId())), 201);
             } catch (NotFoundException e) {
                 sendNotFound(exchange, e.getMessage());
             }
@@ -63,7 +63,7 @@ public class EpicsHandler extends BaseHttpHandler {
             if (epic.getId() != null && Integer.parseInt(parts[2]) == epic.getId()) {
                 try {
                     manager.updateEpic(epic);
-                    sendText(exchange, gson.toJson(manager.getEpics()), 201);
+                    sendText(exchange, 201);
                 } catch (NotFoundException e) {
                     sendNotFound(exchange, e.getMessage());
                 }

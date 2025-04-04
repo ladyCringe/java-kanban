@@ -223,7 +223,7 @@ public class HttpTaskManagerSubtasksTest {
         HttpResponse<String> response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
 
         assertEquals(201, response.statusCode());
-        assertTrue(response.body().contains("Updated"));
+        assertTrue(response.body().isEmpty());
     }
 
     @Test

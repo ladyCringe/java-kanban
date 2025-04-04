@@ -57,6 +57,11 @@ public class BaseHttpHandler implements HttpHandler {
         h.close();
     }
 
+    protected void sendText(HttpExchange h, int code) throws IOException {
+        h.sendResponseHeaders(code, 0);
+        h.close();
+    }
+
     protected void sendNotFound(HttpExchange h, String text) throws IOException {
         sendText(h, text, 404);
     }

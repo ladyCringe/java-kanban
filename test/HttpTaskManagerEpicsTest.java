@@ -30,7 +30,6 @@ public class HttpTaskManagerEpicsTest {
         manager = new InMemoryTaskManager();
         server = new HttpTaskServer(manager);
         gson = server.getGson();
-
         server.start();
     }
 
@@ -164,7 +163,7 @@ public class HttpTaskManagerEpicsTest {
         HttpResponse<String> response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
 
         assertEquals(201, response.statusCode());
-        assertTrue(response.body().contains("Updated Epic"));
+        assertTrue(response.body().isEmpty());
     }
 
     @Test

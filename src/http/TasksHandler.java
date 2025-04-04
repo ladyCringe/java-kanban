@@ -47,7 +47,7 @@ public class TasksHandler extends BaseHttpHandler {
         if (parts.length == 2) {
             try {
                 manager.createTask(task);
-                sendText(exchange, gson.toJson(manager.getTasks()), 201);
+                sendText(exchange, gson.toJson(manager.getTaskById(task.getId())), 201);
             } catch (IllegalArgumentException e) {
                 sendHasInteractions(exchange, e.getMessage());
             } catch (NotFoundException e) {
@@ -57,7 +57,7 @@ public class TasksHandler extends BaseHttpHandler {
             if (task.getId() != null && Integer.parseInt(parts[2]) == task.getId()) {
                 try {
                     manager.updateTask(task);
-                    sendText(exchange, gson.toJson(manager.getTasks()), 201);
+                    sendText(exchange, 201);
                 } catch (IllegalArgumentException e) {
                     sendHasInteractions(exchange, e.getMessage());
                 } catch (NotFoundException e) {
